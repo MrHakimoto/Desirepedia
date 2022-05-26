@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use Google\Client as GoogleClient;
 
@@ -19,7 +19,9 @@ if($_POST['g_csrf_token'] != $cookie) {
 $client = new GoogleClient(['client_id' => '31857203907-8isaavdi8cnt31ahmq8hcvgei1l700j1.apps.googleusercontent.com']); 
 $payload = $client->verifyIdToken($_POST['credential']);
 if (isset($payload['email'])) {
+    echo "<pre>";
     print_r($payload);
+    echo "</pre>";
 }
 
 
