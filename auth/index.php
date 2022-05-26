@@ -5,6 +5,13 @@
     if(empty($_GET['ia'])){
         header("Location: index.php?ia=1");
     }
+    if(isset($_GET['error'])){
+        switch($_GET['error']) {
+            case 1:
+                $error = "Eerro ao logar-se no google!";
+            break;
+        }
+    }
 
 ?>
 
@@ -64,3 +71,9 @@
 
 </body>
 </html>
+
+<?php 
+
+
+
+?>
