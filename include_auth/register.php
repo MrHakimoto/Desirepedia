@@ -5,7 +5,7 @@ echo "Registro";
 ?>
 
 
-<!-- Login -->
+<!-- Registro -->
 
 
 

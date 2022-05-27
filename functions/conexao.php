@@ -1,0 +1,9 @@
+<?php
+
+function con() {
+    $host = "";
+}
+
+
+
+?>

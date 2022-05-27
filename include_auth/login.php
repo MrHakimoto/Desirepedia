@@ -30,4 +30,4 @@ echo "Login";
 
 
 
-<!-- Banco de daos -->
+<!-- Banco de dados -->
