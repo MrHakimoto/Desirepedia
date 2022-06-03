@@ -21,6 +21,13 @@
     toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
     menubar: false,
     });
+    tinymce.init({
+    selector: 'textarea#prximo',
+    skin: 'bootstrap',
+    plugins: 'lists, link, image, media',
+    toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+    menubar: false,
+    });
 </script>
 
     </head>
@@ -36,6 +43,8 @@
                 <div class="form-group">
                 <form action="" method="POST">
                     <textarea name="texto" id="editor"></textarea>
+
+                    <textarea name="texto" id="prximo"></textarea>
                 </div>
 
 
