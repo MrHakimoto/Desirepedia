@@ -9,8 +9,8 @@
     <!-- Bootstrap CSS -->
     <script src="https://cdn.tiny.cloud/1/9m7br97tvi49do4krkoz9z47u4t5vto64qqgrfcty65xqocr/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    <title>Bootstrap</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Admin | Diserepédia</title>
 
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
 
@@ -28,8 +28,7 @@
     <p>CUIDADO! TUDO FEITO AQUI IMPACTARÁ DIRETAMENTE NO SERVIDOR!</p>
 
 
-    <h1> O que você deseja fazer? </h1>
-    <a href="index.php?labore=1" class="button btn btn-lg ml-2"> Criar Provas </a> <a href="index.php?labore=2" class="button btn btn-lg ml-2"> Editar provas </a>
+    
 
 
         <?php if (!empty($_GET['labore'])) {
@@ -42,7 +41,15 @@
                     include_once('includes/edit.php');
                     break;
             }
-        }
+
+
+        } else {
+            echo "
+            <h1> O que você deseja fazer? </h1>
+    <a href='index.php?labore=1' class='button btn btn-lg ml-2'> Criar Provas </a> <a href='index.php?labore=2' class='button btn btn-lg ml-2'> Editar provas </a>
+";        
+}
+
 ?>
 
 
@@ -56,6 +63,8 @@
 
 
 <?php
+
+
 
 try {
     $con = new PDO("sqlite:../db/test.db3");
