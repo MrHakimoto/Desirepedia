@@ -14,43 +14,63 @@
 
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
 
-    <?php if(isset($script)){
+    <?php if (isset($script)) {
         echo $script;
     } ?>
 
 </head>
 
 <body>
-    
+
 
     <p> Área para execusão das provas </p>
 
     <p>CUIDADO! TUDO FEITO AQUI IMPACTARÁ DIRETAMENTE NO SERVIDOR!</p>
 
 
-    
 
 
-        <?php if (!empty($_GET['labore'])) {
-            switch($_GET['labore']) {
-                case 1:
-                    include_once('includes/create.php');
-                    break;
 
-                case 2:
-                    include_once('includes/edit.php');
-                    break;
-            }
+    <?php if (!empty($_GET['labore'])) {
 
+        $return = "
+<button type='button' onclick='remover_vos_ei()' class='btn btn-outline-danger'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-90deg-left' viewBox='0 0 16 16'>
+  <path fill-rule='evenodd' d='M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z'></path>
+</svg>
+                Button
+              </button>
 
-        } else {
-            echo "
+              <script>
+              function remover_vos_ei() {
+                console.log('cheguei') 
+                url = new URL(window.location.href);
+                let params = url.searchParams;   
+                params.delete('labore');
+                window.location = document.URL.replace('labore=" . $_GET['labore'] . "',''); 
+            } </script>
+              ";
+        switch ($_GET['labore']) {
+            case 1:
+
+                include_once('includes/create.php');
+                break;
+
+            case 2:
+
+                include_once('includes/edit.php');
+                break;
+            case 3:
+                include_once('includes/newTest.php');
+        }
+    } else {
+        echo "
             <h1> O que você deseja fazer? </h1>
-    <a href='index.php?labore=1' class='button btn btn-lg ml-2'> Criar Provas </a> <a href='index.php?labore=2' class='button btn btn-lg ml-2'> Editar provas </a>
-";        
-}
+    <a href='index.php?labore=1' class='button btn btn-lg ml-2'> Criar Questões </a> <a href='index.php?labore=2' class='button btn btn-lg ml-2'> Editar provas </a> <a href='index.php?labore=3' class='button btn btn-lg ml-2'> Criar provas </a>
+";
+    }
 
-?>
+    ?>
 
 
 
@@ -108,7 +128,7 @@ if ($con->exec($baseDB)) {
 
 
 
-if(isset($_POST['enun'])) {
+if (isset($_POST['enun'])) {
     $enunciado = $_POST['enun'];
     $alternativa_a = $_POST['alA'];
     $alternativa_b = $_POST['alB'];
@@ -117,34 +137,34 @@ if(isset($_POST['enun'])) {
     $alternativa_e = $_POST['alE'];
     $alternativa_correta = $_POST['alt'];
     $numero = 802019;
-echo $enunciado = $_POST['enun'] ." ". $alternativa_a ." ". $alternativa_b  ." ". $alternativa_c  ." ". $alternativa_d  ." ". $alternativa_e ." ". $alternativa_correta;
-
-
- 
-
-$compultar = "INSERT INTO enem_2019 (q_global, q_num, q_enum,  q_alt_a,  q_alt_b,  q_alt_c,  q_alt_d,  q_alt_e, q_correct) VALUES ($numero, null , '$enunciado', '$alternativa_a', '$alternativa_b', '$alternativa_c', '$alternativa_d', '$alternativa_e', '$alternativa_correta');";
-
-$mandar = $con->exec($compultar);
-
-$mandar = $con->prepare($compultar, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-
-
-$mandar->execute();
+    echo $enunciado = $_POST['enun'] . " " . $alternativa_a . " " . $alternativa_b  . " " . $alternativa_c  . " " . $alternativa_d  . " " . $alternativa_e . " " . $alternativa_correta;
 
 
 
 
-$select = "SELECT * FROM enem_2019";
-$stmt = $con->prepare($select);
- 
-// Execute statement.
-$stmt->execute(); // ID between 1 and 3.
- 
-// Get the results.
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-foreach($results as $row) {
-    print_r($row);
-}
+    $compultar = "INSERT INTO enem_2019 (q_global, q_num, q_enum,  q_alt_a,  q_alt_b,  q_alt_c,  q_alt_d,  q_alt_e, q_correct) VALUES ($numero, null , '$enunciado', '$alternativa_a', '$alternativa_b', '$alternativa_c', '$alternativa_d', '$alternativa_e', '$alternativa_correta');";
+
+    $mandar = $con->exec($compultar);
+
+    $mandar = $con->prepare($compultar, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
+
+    $mandar->execute();
+
+
+
+
+    $select = "SELECT * FROM enem_2019";
+    $stmt = $con->prepare($select);
+
+    // Execute statement.
+    $stmt->execute(); // ID between 1 and 3.
+
+    // Get the results.
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $row) {
+        print_r($row);
+    }
 }
 
 $vb = "CREATE TABLE `maccabeus`.`enem_2019` ( `q_global` INT(12) NOT NULL COMMENT 'Id Geral da questão' ,  `q_num` INT(12) NOT NULL AUTO_INCREMENT COMMENT 'ID da prova' ,  `q_enum` MEDIUMTEXT NOT NULL COMMENT 'Enunciado da questão texto e imagens etc' ,  `q_alt_a` TEXT NOT NULL ,  `q_alt_b` TEXT NOT NULL ,  `q_alt_c` TEXT NOT NULL ,  `q_alt_d` TEXT NOT NULL ,  `q_alt_e` TEXT NOT NULL ,  `q_correct` TEXT NOT NULL ,    PRIMARY KEY  (`q_num`)) ENGINE = InnoDB;"

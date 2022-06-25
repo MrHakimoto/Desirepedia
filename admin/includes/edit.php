@@ -21,8 +21,11 @@ if (!empty($_GET['test'])) {
                 params.delete('q');
                 window.location = document.URL.replace('&q=" . $_GET['q'] . "',''); 
             } ";
+        $omega1 = "removerQ()";
     } else {
         $omega = '';
+        $omega1 = "";
+        
         echo "<h1> Editando </h1> : <p>" . $_GET['test'] . "</p>";
 
         $nome_da_tabela =  $_GET['test'];
@@ -50,7 +53,7 @@ if (!empty($_GET['test'])) {
     $omega
 
     function remover() {
-            removerQ()
+            $omega1
             url = new URL(window.location.href);
             let params = url.searchParams;   
             params.delete('test');
@@ -59,7 +62,7 @@ if (!empty($_GET['test'])) {
 
         }  </script> ";
 } else {
-
+    echo $return;
     $ver = "SELECT * FROM sqlite_master WHERE type='table'";
     $stmt = $con->prepare($ver);
 
