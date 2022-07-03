@@ -81,13 +81,26 @@ echo "Registro";
 									<label class="label" for="password">Repita a Senha</label>
 									<input type="password" class="form-control" id="register_senha2" onkeydown="verificar(this.id)" onkeyup="verificar(this.id)" placeholder="Sua senha novamente" required name="senha2">
 									<div id="errorSenha2" class="invalid-feedback">
-										As senhas não se considem.
+										As senhas não se coensidem.
 									</div>
 								</div>
 								<div class="form-group">
-									<button type="submit" class="form-control btn btn-primary rounded submit px-3">Registrar</button>
+									<button type="submit" id="enviar" class="form-control btn btn-primary rounded submit px-3">Registrar</button>
+									<div id="errorCentral" class="invalid-feedback text-center">
+
+									</div>
 								</div>
 							</form>
+							<div class="divider d-flex align-items-center my-4">
+								<p class="text-center fw-bold mx-3 mb-0 login-vls">Ou</p>
+							</div>
+							<div class="d-flex justify-content-center m-3">
+								<script src="https://accounts.google.com/gsi/client" async defer></script>
+								<div id="g_id_onload" data-client_id="931857203907-8isaavdi8cnt31ahmq8hcvgei1l700j1.apps.googleusercontent.com" data-login_uri="http://localhost/Desirepedia/auth/auth.php" data-auto_prompt="false">
+								</div>
+								<div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+								</div>
+							</div>
 							<p class="text-center">Já possui uma conta? <a data-toggle="tab" href="index.php?ia=1">Logue-se</a></p>
 						</div>
 					</div>
@@ -115,22 +128,27 @@ echo "Registro";
 				console.log(valor_inpt.length)
 				if (valor_inpt.val().length < 5) {
 					valor_inpt.addClass('is-invalid')
+					prevent[0] = false;
 				} else {
 					valor_inpt.removeClass('is-invalid')
+					prevent[0] = true;
 				}
 				break;
 			case "register_email":
 				var valor_inpt = $(`#${x}`);
-				if (v == 1) {
-					if (!validaEmail(valor_inpt.val())) {
-						$("#errorMail").text('Por favor, coloque um e-mail válido!');
-						valor_inpt.addClass('is-invalid')
-					} else {
-						valor_inpt.removeClass('is-invalid')
-					}
-				} else if (v == 2) {
+
+				if (!validaEmail(valor_inpt.val())) {
+					$("#errorMail").text('Por favor, coloque um e-mail válido!');
+					valor_inpt.addClass('is-invalid')
+					prevent[1] = false;
+				} else {
 					//$.ajax();
+
+					prevent[1] = true;
+
+					valor_inpt.removeClass('is-invalid')
 				}
+
 
 
 
@@ -142,20 +160,26 @@ echo "Registro";
 			case "register_senha1":
 				var valor_inpt = $(`#${x}`);
 
-				let numeros = /^(?=(?:.*?[0-9]){1})*$/;
-				let maiscula = /^(?=(?:.*?[A-Z]){1})*$/;
+				let numeros = /[0-9]/;
+				let maiscula = /[A-Z]/;
 
 				if (valor_inpt.val().length < 8) {
 					valor_inpt.addClass('is-invalid')
 					$("#errorSenha1").text('Por favor, coloque pelo menos 8 caracteres!');
+					prevent[2] = false;
 				} else {
-					if (numeros.val().exec()) {
+					if (!numeros.test(valor_inpt.val())) {
 						valor_inpt.addClass('is-invalid')
 						$("#errorSenha1").text('Por favor, coloque ao menos 1 número, em sua senha!');
+						prevent[2] = false;
 					} else {
-						if (maiscula.val().exec()) {
+						if (!maiscula.test(valor_inpt.val())) {
 							valor_inpt.addClass('is-invalid')
 							$("#errorSenha1").text('Por favor, coloque ao menos um caracter maisculo!');
+							prevent[2] = false;
+						} else {
+							valor_inpt.removeClass('is-invalid');
+							prevent[2] = true;
 						}
 					}
 				}
@@ -165,6 +189,16 @@ echo "Registro";
 				break;
 			case "register_senha2":
 				var valor_inpt = $(`#${x}`);
+
+				if (valor_inpt.val().length >= 8) {
+					if (valor_inpt.val() != $("#register_senha1").val()) {
+						valor_inpt.addClass('is-invalid')
+						prevent[3] = false;
+					} else {
+						valor_inpt.removeClass('is-invalid')
+						prevent[3] = true;
+					}
+				}
 				break;
 		}
 		console.log($(`#${x}`).val());
@@ -173,7 +207,9 @@ echo "Registro";
 		for (var i = 0; i < prevent.length; i++) {
 			if (!prevent[i]) {
 				e.preventDefault();
+				$("#enviar").addClass("is-invalid")
 				let error = "Ainda há erros em sua inscrição!"
+				$("#errorCentral").text(error)
 			}
 		}
 
