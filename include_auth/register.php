@@ -55,7 +55,7 @@ echo "Registro";
 									</p>
 								</div>
 							</div>
-							<form action="#" class="signin-form" id="register_form">
+							<form action="insert.php" method="POST" class="signin-form" id="register_form">
 								<div class="form-group mb-3">
 									<label class="label" for="name">Seu Nome</label>
 									<input type="text" class="form-control" id="register_nome" onkeydown="verificar(this.id)" onkeyup="verificar(this.id)" placeholder="Nome" required name="nome">
@@ -152,28 +152,31 @@ echo "Registro";
 					valor_inpt.addClass('is-invalid')
 					prevent[1] = false;
 				} else {
-					$("#form1").submit(function(e) {
-						e.preventDefault();
-						comment
-						var campo = $('#campo').val();
-						var comment = $('#comment').val();
-						//console.log(campo);
+					
+						var campo = $(`#${x}`).val();
+						var vr = "register";
+						console.log(campo, "campo")
+						//console.log(campo, "slv");
 						$.ajax({
 							url: "http://localhost/Desirepedia/functions/consulta.php",
 							method: "POST",
 							data: {
-								name: campo,
-								comentario: comment
+								emailR: campo,
+								type: vr
 							},
 							dataType: "json"
 						}).done(function(r) {
-							$('#campo').val("");
-							$('#comment').val("");
-							chama();
-							console.log(r)
+							console.log(r, "value")
+							if (r) {
+								valor_inpt.removeClass('is-invalid')
+								prevent[1] = true;
+							} else {
+								$("#errorMail").text('Email já existente, tente outro!');
+								valor_inpt.addClass('is-invalid')
+								prevent[1] = false;
+							}
 						})
-					})
-
+					
 					prevent[1] = true;
 
 					valor_inpt.removeClass('is-invalid')
@@ -284,6 +287,7 @@ echo "Registro";
 		}
 
 	})
+
 </script>
 
 <!-- Banco de daos -->
