@@ -72,16 +72,26 @@ echo "Registro";
 								</div>
 								<div class="form-group mb-3">
 									<label class="label" for="password">Senha</label>
-									<input type="password" class="form-control" id="register_senha1" onkeydown="verificar(this.id)" onkeyup="verificar(this.id)" placeholder="Senha" required name="senha1">
-									<div id="errorSenha1" class="invalid-feedback">
-										.
+									<div class="input-group">
+										<input type="password" class="form-control" id="register_senha1" onkeydown="verificar(this.id)" onkeyup="verificar(this.id)" placeholder="Senha" required name="senha1">
+
+										<span class="input-group-text"><i class="bi bi-eye-slash-fill" id="olhoS1"></i></span>
+
+										<div id="errorSenha1" class="invalid-feedback">
+											.
+										</div>
 									</div>
 								</div>
 								<div class="form-group mb-3">
 									<label class="label" for="password">Repita a Senha</label>
-									<input type="password" class="form-control" id="register_senha2" onkeydown="verificar(this.id)" onkeyup="verificar(this.id)" placeholder="Sua senha novamente" required name="senha2">
-									<div id="errorSenha2" class="invalid-feedback">
-										As senhas não se coensidem.
+									<div class="input-group">
+										<input type="password" class="form-control" id="register_senha2" onkeydown="verificar(this.id)" onkeyup="verificar(this.id)" placeholder="Sua senha novamente" required name="senha2">
+
+										<span class="input-group-text"><i class="bi bi-eye-slash-fill" id="olhoS2"></i></span>
+
+										<div id="errorSenha2" class="invalid-feedback">
+											As senhas não se coensidem.
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -142,7 +152,27 @@ echo "Registro";
 					valor_inpt.addClass('is-invalid')
 					prevent[1] = false;
 				} else {
-					//$.ajax();
+					$("#form1").submit(function(e) {
+						e.preventDefault();
+						comment
+						var campo = $('#campo').val();
+						var comment = $('#comment').val();
+						//console.log(campo);
+						$.ajax({
+							url: "http://localhost/Desirepedia/functions/consulta.php",
+							method: "POST",
+							data: {
+								name: campo,
+								comentario: comment
+							},
+							dataType: "json"
+						}).done(function(r) {
+							$('#campo').val("");
+							$('#comment').val("");
+							chama();
+							console.log(r)
+						})
+					})
 
 					prevent[1] = true;
 
@@ -203,6 +233,46 @@ echo "Registro";
 		}
 		console.log($(`#${x}`).val());
 	}
+
+	let btn1 = document.querySelector('#olhoS1');
+	let btn2 = document.querySelector('#olhoS2');
+	var s1 = true;
+	var s2 = true;
+	btn1.addEventListener('click', () => {
+		if (s1) {
+			$("#olhoS1").removeClass('bi-eye-slash-fill')
+			$("#olhoS1").addClass('bi-eye-fill')
+			$("#register_senha1").get(0).type = 'text';
+			$("#register_senha1").focus()
+			s1 = false
+		} else {
+			$("#olhoS1").addClass('bi-eye-slash-fill')
+			$("#olhoS1").removeClass('bi-eye-fill')
+			$("#register_senha1").get(0).type = 'password';
+			$("#register_senha1").focus()
+			s1 = true
+		}
+		//console.log("FALA COM NOIS1")
+		//console.log(btn1.id)
+	})
+	btn2.addEventListener('click', () => {
+		if (s2) {
+			$("#olhoS2").removeClass('bi-eye-slash-fill')
+			$("#olhoS2").addClass('bi-eye-fill')
+			$("#register_senha2").get(0).type = 'text';
+			$("#register_senha2").focus()
+			s2 = false
+		} else {
+			$("#olhoS2").addClass('bi-eye-slash-fill')
+			$("#olhoS2").removeClass('bi-eye-fill')
+			$("#register_senha2").get(0).type = 'password';
+			$("#register_senha2").focus()
+			s2 = true
+		}
+		//console.log("FALA COM NOIS2")
+		//console.log(btn2.id)
+	})
+
 	$("#register_form").submit((e) => {
 		for (var i = 0; i < prevent.length; i++) {
 			if (!prevent[i]) {

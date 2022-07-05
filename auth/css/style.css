@@ -8353,6 +8353,15 @@ background: #eee;
 .h-custom {
 height: calc(100% - 73px);
 }
+.transparent {
+  background-color: transparent !important;
+  box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+}
+.left-border-none {
+  border-left: none !important;
+  box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+}
+
 @media (max-width: 450px) {
 .h-custom {
 height: 100%;
