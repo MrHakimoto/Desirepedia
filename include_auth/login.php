@@ -45,8 +45,12 @@
 									<input type="text" class="form-control" placeholder="Nome" required>
 								</div>
 								<div class="form-group mb-3">
+
 									<label class="label" for="password">Senha</label>
-									<input type="password" class="form-control" placeholder="Senha" required>
+									<div class="input-group">
+										<input type="password" id="Pass_Login" class="form-control" placeholder="Senha" required>
+										<span class="input-group-text"><i class="bi bi-eye-slash-fill" id="olhoS1"></i></span>
+									</div>
 								</div>
 								<div class="form-group">
 									<button type="submit" class="form-control btn btn-primary rounded submit px-3">Entrar</button>
@@ -87,7 +91,28 @@
 	<script src="js/popper.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+		let btn1 = document.querySelector('#olhoS1');
+		var s1 = true;
 
+		btn1.addEventListener('click', () => {
+			if (s1) {
+				$("#olhoS1").removeClass('bi-eye-slash-fill')
+				$("#olhoS1").addClass('bi-eye-fill')
+				$("#Pass_Login").get(0).type = 'text';
+				$("#Pass_Login").focus()
+				s1 = false
+			} else {
+				$("#olhoS1").addClass('bi-eye-slash-fill')
+				$("#olhoS1").removeClass('bi-eye-fill')
+				$("#Pass_Login").get(0).type = 'password';
+				$("#Pass_Login").focus()
+				s1 = true
+			}
+			//console.log("FALA COM NOIS1")
+			//console.log(btn1.id)
+		})
+	</script>
 </body>
 
 </html>
