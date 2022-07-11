@@ -97,30 +97,14 @@ try {
 
 <?php
 
-$baseDB = "CREATE TABLE IF NOT EXISTS enem_2019 (
-    q_global INT(12) NOT NULL,
-    q_num INTEGER PRIMARY KEY AUTOINCREMENT,
-    q_enum MEDIUMTEXT NOT NULL,
-    q_alt_a TEXT NOT NULL,
-    q_alt_b TEXT NOT NULL,
-    q_alt_c TEXT NOT NULL,
-    q_alt_d TEXT NOT NULL,
-    q_alt_e TEXT NOT NULL,
-    q_correct TEXT NOT NULL
-);";
-$pau = "CREATE TABLE IF NOT EXISTS finasterida (
-    q_global INT(12) NOT NULL,
-    q_num INTEGER PRIMARY KEY AUTOINCREMENT,
-    q_enum MEDIUMTEXT NOT NULL,
-    q_alt_a TEXT NOT NULL);";
+$data_base = "CREATE TABLE IF NOT EXISTS id_tests (
+    codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_bo_prova TEXT,
+    nome_bd_prova TEXT
+    );";
 
-if ($con->exec($pau)) {
-    echo "Inserido!";
-} else {
-    echo "Erro!";
-}
 
-if ($con->exec($baseDB)) {
+if ($con->exec($data_base)) {
     echo "Inserido!";
 } else {
     echo "Erro!";
@@ -128,46 +112,46 @@ if ($con->exec($baseDB)) {
 
 
 
-if (isset($_POST['enun'])) {
-    $enunciado = $_POST['enun'];
-    $alternativa_a = $_POST['alA'];
-    $alternativa_b = $_POST['alB'];
-    $alternativa_c = $_POST['alC'];
-    $alternativa_d = $_POST['alD'];
-    $alternativa_e = $_POST['alE'];
-    $alternativa_correta = $_POST['alt'];
-    $numero = 802019;
-    echo $enunciado = $_POST['enun'] . " " . $alternativa_a . " " . $alternativa_b  . " " . $alternativa_c  . " " . $alternativa_d  . " " . $alternativa_e . " " . $alternativa_correta;
+
+// if (isset($_POST['enun'])) {
+//     $enunciado = $_POST['enun'];
+//     $alternativa_a = $_POST['alA'];
+//     $alternativa_b = $_POST['alB'];
+//     $alternativa_c = $_POST['alC'];
+//     $alternativa_d = $_POST['alD'];
+//     $alternativa_e = $_POST['alE'];
+//     $alternativa_correta = $_POST['alt'];
+//     $numero = 802019;
+//     echo $enunciado = $_POST['enun'] . " " . $alternativa_a . " " . $alternativa_b  . " " . $alternativa_c  . " " . $alternativa_d  . " " . $alternativa_e . " " . $alternativa_correta;
 
 
 
 
-    $compultar = "INSERT INTO enem_2019 (q_global, q_num, q_enum,  q_alt_a,  q_alt_b,  q_alt_c,  q_alt_d,  q_alt_e, q_correct) VALUES ($numero, null , '$enunciado', '$alternativa_a', '$alternativa_b', '$alternativa_c', '$alternativa_d', '$alternativa_e', '$alternativa_correta');";
+//     $compultar = "INSERT INTO enem_2019 (q_global, q_num, q_enum,  q_alt_a,  q_alt_b,  q_alt_c,  q_alt_d,  q_alt_e, q_correct) VALUES ($numero, null , '$enunciado', '$alternativa_a', '$alternativa_b', '$alternativa_c', '$alternativa_d', '$alternativa_e', '$alternativa_correta');";
 
-    $mandar = $con->exec($compultar);
+//     $mandar = $con->exec($compultar);
 
-    $mandar = $con->prepare($compultar, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-
-
-    $mandar->execute();
+//     $mandar = $con->prepare($compultar, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
 
+//     $mandar->execute();
 
 
-    $select = "SELECT * FROM enem_2019";
-    $stmt = $con->prepare($select);
 
-    // Execute statement.
-    $stmt->execute(); // ID between 1 and 3.
 
-    // Get the results.
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($results as $row) {
-        print_r($row);
-    }
-}
+//     $select = "SELECT * FROM enem_2019";
+//     $stmt = $con->prepare($select);
 
-$vb = "CREATE TABLE `maccabeus`.`enem_2019` ( `q_global` INT(12) NOT NULL COMMENT 'Id Geral da questão' ,  `q_num` INT(12) NOT NULL AUTO_INCREMENT COMMENT 'ID da prova' ,  `q_enum` MEDIUMTEXT NOT NULL COMMENT 'Enunciado da questão texto e imagens etc' ,  `q_alt_a` TEXT NOT NULL ,  `q_alt_b` TEXT NOT NULL ,  `q_alt_c` TEXT NOT NULL ,  `q_alt_d` TEXT NOT NULL ,  `q_alt_e` TEXT NOT NULL ,  `q_correct` TEXT NOT NULL ,    PRIMARY KEY  (`q_num`)) ENGINE = InnoDB;"
+//     // Execute statement.
+//     $stmt->execute(); // ID between 1 and 3.
+
+//     // Get the results.
+//     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//     foreach ($results as $row) {
+//         print_r($row);
+//     }
+// }
+
 // $con = new PDO("sqlite:../db/test.db3");
 // $ano_Da_prova = 2017;
 // $sql = "SELECT * FROM enem WHERE provaAno=$ano_Da_prova";

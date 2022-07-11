@@ -28,7 +28,7 @@ $nome_table = strtolower(str_replace(' ', '_', $tabela));
 $SQLcreateDB = "CREATE TABLE IF NOT EXISTS $nome_table (
     q_global INT(12) NOT NULL,
     q_num INTEGER PRIMARY KEY AUTOINCREMENT,
-    q_enum MEDIUMTEXT NOT NULL,
+    q_enum TEXT NOT NULL,
     q_alt_a TEXT NOT NULL,
     q_alt_b TEXT NOT NULL,
     q_alt_c TEXT NOT NULL,
@@ -41,6 +41,12 @@ $SQLcreateDB = "CREATE TABLE IF NOT EXISTS $nome_table (
 
 $criar = $con->prepare($SQLcreateDB);
 $criar->execute();
+
+
+$sqlInsertintotable = "INSERT INTO id_tests (nome_bo_prova, nome_bd_prova) VALUES ('$tabela','$nome_table')";
+$criar2 = $con->prepare($sqlInsertintotable);
+$criar2->execute();
+
 
 }
 ?>
