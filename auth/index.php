@@ -2,6 +2,7 @@
     Página de autênticação do usuário
 -->
 <?php 
+    session_start();
     if(empty($_GET['ia'])){
         header("Location: index.php?ia=1");
     }

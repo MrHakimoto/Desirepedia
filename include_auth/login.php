@@ -39,16 +39,16 @@
 									</p>
 								</div>
 							</div>
-							<form action="#" class="signin-form">
+							<form action="login_correto.php" method="POST" class="signin-form">
 								<div class="form-group mb-3">
-									<label class="label" for="name">Seu Nome</label>
-									<input type="text" class="form-control" placeholder="Nome" required>
+									<label class="label" for="name">Seu Nome ou Email</label>
+									<input type="text" class="form-control" placeholder="Nome" id="login_correto" name="user" required>
 								</div>
 								<div class="form-group mb-3">
 
 									<label class="label" for="password">Senha</label>
 									<div class="input-group">
-										<input type="password" id="Pass_Login" class="form-control" placeholder="Senha" required>
+										<input type="password" id="Pass_Login" class="form-control" placeholder="Senha" name="senha" required>
 										<span class="input-group-text"><i class="bi bi-eye-slash-fill" id="olhoS1"></i></span>
 									</div>
 								</div>
@@ -85,16 +85,63 @@
 				</div>
 			</div>
 		</div>
+		<div id="alerte-o">
+			
+		</div>
 	</section>
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<?php
+	if (isset($_SESSION['logado'])) {
+		if ($_SESSION['logado']) {
+			$bao = "logado";
+		}
+	} else {
+		$bao = "";
+	}
+	?>
 	<script>
+		function getUrlVars() {
+			var vars = [],
+				hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		}
+
+		$('document').ready(() => {
+			if (getUrlVars()['validate']) {
+				$("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong> O Registro foi efetivado com sucesso!</strong> Agora, logue-se e aproveite as delícias do site! </div>")
+				//$("#alertando").toggle("slow");
+				var i = 0;
+				var o = setInterval(() => {
+					i++
+					if (i == 3) {
+						clearInterval(o)
+						cancela()
+					}
+					console.log(i);
+				}, 1000);
+
+				function cancela(){
+					console.log("OPa")
+					$("#alertando").fadeOut()
+				}
+				//$("#alertando").toggle("slow");
+			}
+		})
+		
+
 		let btn1 = document.querySelector('#olhoS1');
 		var s1 = true;
-
+		//$('.alert').alert()
 		btn1.addEventListener('click', () => {
 			if (s1) {
 				$("#olhoS1").removeClass('bi-eye-slash-fill')

@@ -58,9 +58,13 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
 
         .alternate:hover {
             background-color: #084d6e;
-            ;
             color: white;
         }
+        .alternativate label:hover ~ .alternate {
+            background-color: #084d6e;
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -112,7 +116,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
 
 
             <div class='card p-2'>
-                <div class='row mb-1'>
+                <div class='row mb-1 alternativate'>
                     <label for='alt_A_$global' class='p-1' >
                     <div class='p-2' id='label_A_$global'>
                     <input id='alt_A_$global' class='d-none' onclick='questionALT(this)' type='radio' name='opcao_$global' value='A'>
@@ -123,7 +127,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     </div>
 
-                    <div class='row mb-1'>
+                    <div class='row mb-1 alternativate'>
                     <label for='alt_B_$global' class='p-1' >
                     <div class='p-2' id='label_B_$global'>
                     <input id='alt_B_$global' class='d-none' onclick='questionALT(this)' type='radio' name='opcao_$global' value='B'>
@@ -134,7 +138,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     </div>
 
-                    <div class='row mb-1'>
+                    <div class='row mb-1 alternativate'>
                     <label for='alt_C_$global' class='p-1' >
                     <div class='p-2' id='label_C_$global'>
                     <input  id='alt_C_$global' class='d-none' onclick='questionALT(this)' type='radio' name='opcao_$global' value='C'>
@@ -145,7 +149,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     </div>
 
-                    <div class='row mb-1'>
+                    <div class='row mb-1 alternativate'>
                     <label for='alt_D_$global' class='p-1' >
                     <div class='p-2' id='label_D_$global'>
                     <input id='alt_D_$global' class='d-none' onclick='questionALT(this)' onclick='' type='radio' name='opcao_$global' value='D'>
@@ -156,7 +160,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     </div>
                     
-                    <div class='row mb-1'>
+                    <div class='row mb-1 alternativate'>
                     <label for='alt_E_$global' class='p-1' >
                     <div class='p-2' id='label_E_$global'>
                     <input id='alt_E_$global' class='d-none' onclick='questionALT(this)' onclick='' type='radio' name='opcao_$global' value='E'>
