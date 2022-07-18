@@ -111,7 +111,7 @@ echo "Registro";
 								<div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
 								</div>
 							</div>
-							<p class="text-center">Já possui uma conta? <a data-toggle="tab" href="index.php?ia=1">Logue-se</a></p>
+							<p class="text-center">Já possui uma conta? <a data-toggle="tab" onclick="redirect(1)" href="index.php?ia=1">Logue-se</a></p>
 						</div>
 					</div>
 				</div>
@@ -129,6 +129,45 @@ echo "Registro";
 </html>
 
 <script>
+	$(document).ready(() => {
+		$("#register_nome").focus();
+	})
+	function getUrlVars() {
+			var vars = [],
+				hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		}
+
+		$('document').ready(() => {
+			if (getUrlVars()['validate']) {
+				$("#alerte-o").prepend("<div class='alert alert-danger text-center fixed fixed-top' id='alertando' role='alert'> <strong> Houve um erro no seu registro!</strong> Já existe um email como este no site! </div>")
+				//$("#alertando").toggle("slow");
+				var i = 0;
+				var o = setInterval(() => {
+					i++
+					if (i == 3) {
+						clearInterval(o)
+						cancela()
+					}
+					console.log(i);
+				}, 1000);
+
+				function cancela() {
+					console.log("OPa")
+					$("#alertando").fadeOut()
+				}
+				//$("#alertando").toggle("slow");
+			}
+		})
+
+
+
 	var prevent = []
 
 	function verificar(x, v = null) {

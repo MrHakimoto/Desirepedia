@@ -22,9 +22,12 @@ if (isset($_POST['user'])) {
     $stmt->bind_param("ss", $values['user'], $values['senha']);
     $stmt->execute();
 
+ 
+
     //if (mysqli_affected_rows($con) > 0) {
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
+        $foi = $row['id'];
         print_r($row);
         print "<pre> <br>";
         echo $row['id'] . "<br>";
@@ -39,10 +42,10 @@ if (isset($_POST['user'])) {
         $_SESSION['picture'] = $row['picture'];
         $_SESSION['data_inclusao'] = $row['data_inclusao'];
     }
+    echo isset($foi) ? header("Location: ../") : header("Location: ../auth/index.php?ia=1&error=1");
 
 
-
-    header("Location: ../");
+    ;
     //$_SESSION['id'] = 
     //$_SESSION['nome'] = 
     //$_SESSION['email'] = 
@@ -64,4 +67,4 @@ if (isset($_POST['user'])) {
 //$stmt->bind_param("sssss", $var1, $var1, $var1, $var1, $var1);
 //$var1 = "oi";
 
-$mysqli->close();
+$con->close();

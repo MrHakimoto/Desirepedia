@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 
-$pdo = new PDO('mysql:host=localhost; dbname=diserepedia;', 'root', '');
+$pdo = new PDO('mysql:host=localhost; dbname=desirepedia;', 'root', '');
 
 
 if(isset($_POST['type'])) {

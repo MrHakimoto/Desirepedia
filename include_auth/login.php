@@ -79,14 +79,14 @@
 							</div>
 
 
-							<p class="text-center">Não possui uma conta? <a data-toggle="tab" href="index.php?ia=2">Registre-se</a></p>
+							<p class="text-center">Não possui uma conta? <a data-toggle="tab" onclick="redirect(2)" href="index.php?ia=2">Registre-se</a></p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="alerte-o">
-			
+
 		</div>
 	</section>
 
@@ -104,6 +104,11 @@
 	}
 	?>
 	<script>
+		$(document).ready(() => {
+			$("#login_corretoe").focus();
+		})
+
+		
 		function getUrlVars() {
 			var vars = [],
 				hash;
@@ -117,6 +122,28 @@
 		}
 
 		$('document').ready(() => {
+			if (getUrlVars()['error'] == 1) {
+				$("#alerte-o").prepend("<div class='alert alert-danger text-center fixed fixed-top' id='alertando' role='alert'> <strong>Error ao logar!</strong> Verifique se estão corretas as informações! </div>")
+				//$("#alertando").toggle("slow");
+				var i = 0;
+				var o = setInterval(() => {
+					i++
+					if (i == 3) {
+						clearInterval(o)
+						cancela()
+					}
+					console.log(i);
+				}, 1000);
+
+				function cancela() {
+					console.log("OPa")
+					$("#alertando").fadeOut()
+				}
+				//$("#alertando").toggle("slow");
+			}
+
+
+
 			if (getUrlVars()['validate']) {
 				$("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong> O Registro foi efetivado com sucesso!</strong> Agora, logue-se e aproveite as delícias do site! </div>")
 				//$("#alertando").toggle("slow");
@@ -130,14 +157,14 @@
 					console.log(i);
 				}, 1000);
 
-				function cancela(){
+				function cancela() {
 					console.log("OPa")
 					$("#alertando").fadeOut()
 				}
 				//$("#alertando").toggle("slow");
 			}
 		})
-		
+
 
 		let btn1 = document.querySelector('#olhoS1');
 		var s1 = true;

@@ -69,7 +69,11 @@
 
 
 ?>
-
+<script>
+    function redirect(v) {
+			window.location.href = "index.php?ia=" + v;
+		}
+</script>
 
 </body>
 </html>
