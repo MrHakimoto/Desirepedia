@@ -29,7 +29,7 @@ echo "DASHBOARD";
     ?>
 
 
-    <div class="container my-5">
+    <div class="container my-5 text-white">
         <h1>Olá, <?php echo $_SESSION['nome']; ?></h1>
     </div>
 

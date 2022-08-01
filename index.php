@@ -10,6 +10,7 @@ session_start();
 <?php
 
 if (isset($_SESSION['id'])) {
+    echo $_SESSION['id'] . "<br>";
     include_once('include/dashboard.php');
 } else {
     include_once('include/landing-page.php');

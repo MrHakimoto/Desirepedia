@@ -63,8 +63,10 @@ session_start();
                 <div>
                     <ul style="list-style: none; ">
                         <li id="perfil1" class="select" onclick="liberar(this)"> Alterar nome de Úsuario </li>
-                        <li id="perfil2" onclick="liberar(this)"> Alterar E-mail </li>
-                        <li id="perfil3" onclick="liberar(this)"> Alterar Senha </li>
+                        <li id="perfil2" onclick="liberar(this)"> Alterar Foto de perfil </li>
+                        <li id="perfil3" onclick="liberar(this)"> Alterar E-mail </li>
+                        <li id="perfil4" onclick="liberar(this)"> Alterar Senha </li>
+
                     </ul>
                 </div>
             </section>
@@ -79,26 +81,124 @@ session_start();
         </div>
 
         <div id="perfil2_perfil2" class="row content" style="display: none;">
-        <p>Email</p>
+            <p>Alterar foto</p>
+            <form action="javascript:void(0)" method="POST" id="f_alterarfoto" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Example file input</label>
+                    <input type="file" name="arquivo_alteracao" class="form-control-file" id="exampleFormControlFile1">
+
+                    <br> <br>
+                    <button type="submit"> Enviar </button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById("f_alterarfoto").addEventListener('submit', alterar);
+
+
+            // URL TROCARURL
+
+            function alterar(env) {
+                var form, prct
+                form = new FormData(env.target)
+                $.ajax({
+                    method: 'POST',
+                    url: "http://localhost/Desirepedia/functions/newfile.php",
+                    dataType: 'json',
+                    data: form,
+                    cache: false,
+                    processData: false,
+                    success: function(e) {
+                        console.log(e)
+                    },
+                    error: function(e) {
+                        console.log(e)
+                    },
+                    progress: function(e) {
+                        //make sure we can compute the length
+                        if (e.lengthComputable) {
+                            //calculate the percentage loaded
+                            var pct = (e.loaded / e.total) * 100;
+
+                            //log percentage loaded
+                            console.log(pct);
+                        }
+                        //this usually happens when Content-Length isn't set
+                        else {
+                            console.warn('Content Length not reported!');
+                        }
+                    }
+                }).done(function(e) {
+                    console.log(e)
+                    // Do something
+                })
+            }
+        </script>
+
+
+
+        <div id="perfil3_perfil3" class="row content" style="display: none;">
+            <p>Email</p>
+
             <form action="">
                 <input type="text" class="form-control" placeholder="Nome" value="<?php echo $_SESSION['email']; ?>" id="login_correto" name="user" required>
                 <button class="btn btn-outline"> Salvar Alterações </button>
             </form>
         </div>
-        <div id="perfil3_perfil3" class="row content" style="display: none;">
-        <p>Senha</p>
-        <form action="">
-                <input type="text" class="form-control" placeholder="Nome" value="<?php echo $_SESSION['email']; ?>" id="login_correto" name="user" required>
-                <input type="text" class="form-control" placeholder="Nome" value="<?php echo $_SESSION['email']; ?>" id="login_correto" name="user" required>
-                <button class="btn btn-outline"> Salvar Alterações </button>
+
+
+        <div id="perfil4_perfil4" class="row content" style="display: none;">
+            <p>Senha</p>
+
+            <form action="javascript:void(0)" id="btn-prosseguir">
+                <p>Coloque a sua atual senha, primeiro: </p>
+                <div class="input-group">
+                    <input type="password" class="form-control" placeholder="Coloque sua senha" id="senhaAtual">
+
+
+                    <div id="errorSenha1" class="invalid-feedback">
+                        Senha não autenticada!
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-outline my-3"> Prosseguir </button> <br>
+            </form>
+
+            <form id="senha-correto" action="javascript:void(0)" style="display: none;">
+                <p>Nova senha: </p>
+                <p>
+                <div class="input-group">
+                    <input type="password" class="form-control" onkeyup="senha1(this.id)" onkeydown="senha1(this.id)" placeholder="Senha" id="senha_nova_correto1" name="user" required>
+                    <div id="errorSenhaNova" class="invalid-feedback">
+                        .
+                    </div>
+                </div>
+                </p>
+                <p>Repita a senha: </p>
+                <p>
+                <div class="input-group">
+                    <input type="password" class="form-control" onkeyup="senha2(this.id)" onkeydown="senha2(this.id)" placeholder="Repita" id="senha_nova_correto2" name="user" required>
+                    <div id="errorSenhaNova2" class="invalid-feedback">
+                        As senhas não são consonântes!
+                    </div>
+                </div>
+                </p>
+                <div class="input-group">
+                <button class="btn btn-outline my-3" id="button-salvar"> Salvar Alterações </button> <br>
+                <div id="errorSenhaNova3" class="invalid-feedback">
+                        Há erro no formulário!
+                    </div>
+                </div>
             </form>
         </div>
+
         <script>
             function liberar(b) {
-                for (var i = 1; i < 4; i++) {
+                for (var i = 1; i < 5; i++) {
                     $(`#perfil${i}`).removeClass('select');
                 }
-                for (var i = 1; i < 4; i++) {
+                for (var i = 1; i < 5; i++) {
                     $(`#perfil${i}_perfil${i}`).css('display', 'none');
                 }
                 $(`#${b.id}`).addClass('select');
@@ -111,7 +211,7 @@ session_start();
                 if (!validaEmail(valor_inpt.val())) {
                     $("#errorMail").text('Por favor, coloque um e-mail válido!');
                     valor_inpt.addClass('is-invalid')
-                    prevent[1] = false;
+                    
                 } else {
 
                     var campo = $(`#${x}`).val();
@@ -130,15 +230,15 @@ session_start();
                         console.log(r, "value")
                         if (r) {
                             valor_inpt.removeClass('is-invalid')
-                            prevent[1] = true;
+                            
                         } else {
                             $("#errorMail").text('Email já existente, tente outro!');
                             valor_inpt.addClass('is-invalid')
-                            prevent[1] = false;
+                            
                         }
                     })
 
-                    prevent[1] = true;
+                    
 
                     valor_inpt.removeClass('is-invalid')
                 }
@@ -151,33 +251,151 @@ session_start();
                     return regex.test(email);
                 }
             }
+
+            $("#btn-prosseguir").on('submit', () => {
+                console.log("OES")
+                var SenhaAtual = $("#senhaAtual").val();
+                var vr = "passAct";
+                $.ajax({
+                    url: "http://localhost/Desirepedia/functions/changeUser.php",
+                    method: "POST",
+                    data: {
+                        data: SenhaAtual,
+                        type: vr
+                    },
+                    dataType: "json"
+                }).done(function(r) {
+
+                    console.log(r)
+
+                    if (r) {
+                        console.log("TAMO AE    ")
+                        $("#senhaAtual").val("")
+                        $("#senha-correto").css('display', 'block');
+                        $("#btn-prosseguir").css('display', 'none')
+
+                    } else {
+                        $("#senhaAtual").val("")
+
+                        $("#senhaAtual").addClass('is-invalid');
+
+                    }
+                    // console.log(r, "value")
+                    // if (r) {
+                    //     valor_inpt.removeClass('is-invalid')
+                    //     prevent[1] = true;
+                    // } else {
+                    //     $("#errorMail").text('Email já existente, tente outro!');
+                    //     valor_inpt.addClass('is-invalid')
+                    //     prevent[1] = false;
+                    // }
+                })
+            })
+            var prevent = [];
+            prevent[1] = false;
+            function senha1(x) {
+                var valor_inpt = $(`#${x}`);
+
+                let numeros = /[0-9]/;
+                let maiscula = /[A-Z]/;
+
+                if (valor_inpt.val().length < 8) {
+                    valor_inpt.addClass('is-invalid')
+                    $("#errorSenhaNova").text('Por favor, coloque pelo menos 8 caracteres!');
+                    prevent[0] = false;
+                } else {
+                    if (!numeros.test(valor_inpt.val())) {
+                        valor_inpt.addClass('is-invalid')
+                        $("#errorSenhaNova").text('Por favor, coloque ao menos 1 número, em sua senha!');
+                        prevent[0] = false;
+                    } else {
+                        if (!maiscula.test(valor_inpt.val())) {
+                            valor_inpt.addClass('is-invalid')
+                            $("#errorSenhaNova").text('Por favor, coloque ao menos um caracter maisculo!');
+                            prevent[0] = false;
+                        } else {
+                            valor_inpt.removeClass('is-invalid');
+                            prevent[0] = true;
+                        }
+                    }
+                }
+
+            }
+
+            function senha2(x) {
+                var valor_inpt = $(`#${x}`);
+
+                if (valor_inpt.val().length >= 8) {
+                    if (valor_inpt.val() != $("#senha_nova_correto1").val()) {
+                        valor_inpt.addClass('is-invalid')
+                        prevent[1] = false;
+                    } else {
+                        valor_inpt.removeClass('is-invalid')
+                        prevent[1] = true;
+                    }
+                }
+
+            }
+
+            $("#senha-correto").on("submit", function(){
+                prevent.forEach((values) => {
+                    if (!values) {
+                        $("#button-salvar").addClass('is-invalid');
+                    } else {
+                        $("#button-salvar").removeClass('is-invalid');
+                    }
+                })
+                
+                var SenhaNova = $("#senha_nova_correto1").val();
+                var vr = "passNew";
+                $.ajax({
+                    url: "http://localhost/Desirepedia/functions/changeUser.php",
+                    method: "POST",
+                    data: {
+                        data: SenhaNova,
+                        type: vr
+                    },
+                    dataType: "json"
+                }).done(function(r) {
+
+                    console.log(r)
+
+                    if (r) {
+                        console.log("TAMO AE    ")
+                        $("#senhaAtual").val("")
+                        $("#senha-correto").css('display', 'block');
+                        $("#btn-prosseguir").css('display', 'none')
+
+                    } else {
+                        $("#senhaAtual").val("")
+
+                        $("#senhaAtual").addClass('is-invalid');
+
+                    }
+                    // console.log(r, "value")
+                    // if (r) {
+                    //     valor_inpt.removeClass('is-invalid')
+                    //     prevent[1] = true;
+                    // } else {
+                    //     $("#errorMail").text('Email já existente, tente outro!');
+                    //     valor_inpt.addClass('is-invalid')
+                    //     prevent[1] = false;
+                    // }
+                })
+
+                
+                //console.log("FOI!")
+                
+
+            })
         </script>
 
 
-        <div class="row ">
-            <div class="col-4">
-                <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Home</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Profile</a>
-                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Messages</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Settings</a>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">asasas1</div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...asasas2</div>
-                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...asasas3</div>
-                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...asasas5</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -169,8 +169,9 @@ echo "Registro";
 
 
 	var prevent = []
-
+	prevent[3] = false;
 	function verificar(x, v = null) {
+		
 		switch (x) {
 			case "register_nome":
 				var valor_inpt = $(`#${x}`);
@@ -251,6 +252,7 @@ echo "Registro";
 							prevent[2] = false;
 						} else {
 							valor_inpt.removeClass('is-invalid');
+							prevent[3] = false;
 							prevent[2] = true;
 						}
 					}
