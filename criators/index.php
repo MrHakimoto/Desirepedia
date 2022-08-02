@@ -30,10 +30,10 @@
 
 <body>
     <script>
-        for (var i = 1; 1<=6; i++) {
-            $(`#NLink${i}`).removeClass('active');
-        }
-        $('#NLink5').addClass('active');
+        // for (var i = 1; 1<=6; i++) {
+        //     $(`#NLink${i}`).removeClass('active');
+        // }
+        // $('#NLink5').addClass('active');
     </script>
 <?php
 

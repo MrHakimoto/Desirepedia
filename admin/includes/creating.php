@@ -121,8 +121,8 @@ $global = $codigo . $questao_num ;
     <!--Bootstrap classes arrange web page components into columns and rows in a grid -->
     <div class="row justify-content-md-center">
         <div class="col-md-12 col-lg-8">
-            <h1 class="h2 mb-4">Submit issue</h1>
-            <label>Describe the issue in detail</label>
+            <h1 class="h2 mb-4"> A questão está sendo criada </h1>
+            <label> Insira os valores conforme mostra o caderno de questão da prova</label>
             <div class="form-group" class="border border-primary">
                 <p id="lugar"></p>
                 <script>

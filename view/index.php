@@ -11,7 +11,7 @@ try {
 }
 
 
-$sql_prova = "SELECT * FROM " . "enem_ppl_2018";
+$sql_prova = "SELECT * FROM " . "enem_ppl_2014";
 $ir = $con->prepare($sql_prova);
 
 // Execute statement.
@@ -232,7 +232,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     if ($(`#alt_${v}_${number}`).is(':checked')) {
                         console.log("deu bom", v)
                         marcado = v;
-                        var test = "<?php echo "enem_ppl_2018"; ?>";
+                        var test = "<?php echo "enem_ppl_2014"; ?>";
                         $.ajax({
                             url: "http://localhost/Desirepedia/view/conferir.php",
                             method: "POST",

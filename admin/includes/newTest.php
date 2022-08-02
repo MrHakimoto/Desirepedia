@@ -28,7 +28,6 @@ $nome_table = strtolower(str_replace(' ', '_', $tabela));
 $SQLcreateDB = "CREATE TABLE IF NOT EXISTS $nome_table (
     q_global INT(12) NOT NULL,
     q_num INTEGER PRIMARY KEY AUTOINCREMENT,
-    q_enum BLOB,
     q_alt_a TEXT NOT NULL,
     q_alt_b TEXT NOT NULL,
     q_alt_c TEXT NOT NULL,
@@ -36,7 +35,8 @@ $SQLcreateDB = "CREATE TABLE IF NOT EXISTS $nome_table (
     q_alt_e TEXT NOT NULL,
     q_correct TEXT NOT NULL,
     q_materia TEXT NULL,
-    q_conteudo TEXT NULL
+    q_conteudo TEXT NULL,
+    q_enum BLOB
 );";
 
 $criar = $con->prepare($SQLcreateDB);
