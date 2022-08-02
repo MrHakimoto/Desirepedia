@@ -14,7 +14,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <title> Dev's | Desirepedia </title>
+    <title> Profile | Desirepedia </title>
     <style>
         h3 {
             color: #FFFFFF;
@@ -52,11 +52,14 @@ session_start();
 
     include_once('../include/navbar.php');
 
+
     ?>
-    <br><br><br><b>rad2degbr
-        <b></b>
+    <br><br><br><br>
+    <b></b>
     </b>
     <div class="container mt-5 meio">
+        <?php echo $_SERVER['DOCUMENT_ROOT']; ?>
+
 
         <div class="row">
             <section>
@@ -74,19 +77,26 @@ session_start();
 
         <div id="perfil1_perfil1" class="row content">
             <p>Nome</p>
-            <form action="">
-                <input type="text" class="form-control" placeholder="Nome" value="<?php echo $_SESSION['nome']; ?>" id="login_correto" name="user" required>
+            <form action="javascript:void(0)" id="formName">
+                <div class="input-group">
+                    <input type="text" class="form-control" onkeyup="changeName(this.id)" onkeydown="changeName(this.id)" placeholder="Nome" value="<?php echo $_SESSION['nome']; ?>" id="novo_Nome" name="user" required>
+                    <div id="errorSenha1" class="invalid-feedback">
+                        Meu amigo, teu nome de usuário deve haver ao menos 5 caracteres!
+                    </div>
+                </div>
                 <button class="btn btn-outline"> Salvar Alterações </button>
             </form>
         </div>
 
         <div id="perfil2_perfil2" class="row content" style="display: none;">
-            <p>Alterar foto</p>
+            <p>Alterar foto <br> (somente arquivos: .png, .jpg ou .jpeg)</p>
             <form action="javascript:void(0)" method="POST" id="f_alterarfoto" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Example file input</label>
+                    <label for="exampleFormControlFile1">Escolha o arquivo adequado, cavalheiro</label>
                     <input type="file" name="arquivo_alteracao" class="form-control-file" id="exampleFormControlFile1">
-
+                    
+                    <div id="progresssbar" class="progress"> <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div> </div>
+                    <p id="feedback" style="display: none;"> Foto enviada com sucesso! </p>
                     <br> <br>
                     <button type="submit"> Enviar </button>
                 </div>
@@ -100,39 +110,124 @@ session_start();
             // URL TROCARURL
 
             function alterar(env) {
-                var form, prct
-                form = new FormData(env.target)
-                $.ajax({
-                    method: 'POST',
+                
+                var formData = new FormData(); //creating a form data object
+                var files = $('#exampleFormControlFile1')[0].files[0]; // appending the image file to the form data object
+                formData.append('file', files); //appending the file 
+
+                // JQuery ajax request
+                $.ajax({ //making an ajax request to the uploadfile and sending
                     url: "http://localhost/Desirepedia/functions/newfile.php",
                     dataType: 'json',
-                    data: form,
-                    cache: false,
+                    type: 'post',
+                    data: formData,
+                    contentType: false,
                     processData: false,
-                    success: function(e) {
-                        console.log(e)
-                    },
-                    error: function(e) {
-                        console.log(e)
-                    },
-                    progress: function(e) {
-                        //make sure we can compute the length
-                        if (e.lengthComputable) {
-                            //calculate the percentage loaded
-                            var pct = (e.loaded / e.total) * 100;
+                    async: true,
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        //Upload Progress
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 100;
+                                $('div.progress > div.progress-bar').css({
+                                    "width": percentComplete + "%"
+                                });
+                            }
+                        }, false);
 
-                            //log percentage loaded
-                            console.log(pct);
-                        }
-                        //this usually happens when Content-Length isn't set
-                        else {
-                            console.warn('Content Length not reported!');
+                        //Download progress
+                        xhr.addEventListener("progress", function(evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = (evt.loaded / evt.total) * 100;
+                                   
+                                    $("div.progress > div.progress-bar").css({
+                                        "width": percentComplete + "%"
+                                    });
+                                }
+                                if (percentComplete == 100) {
+                                    funfou();
+                                }
+                            },
+                            false);
+                        return xhr;
+                    },
+                    success: function() {
+                        alert("pacata")
+                        $("#progresssbar").css('display','none');
+                        $("#feedback").css('display','block');
+                    }
+                    // success: function(data) { //handle response data
+                    //     if (data !== 0) {
+                    //         // Show image preview
+                    //         $('.response-data').append("<img src=" + data + " width='100%'>"); //inserting the image path into image tag
+                    //         $(".close").trigger('click'); //trigger a close action
+                    //         //alert(data);
+                    //     } else {
+                    //         alert('<b>Sorry</b> the file could not upload!');
+                    //     }
+
+                    // }
+                }).done(function(e) {
+ 
+                        
+                    })
+                    function funfou() {
+                        
+                        $("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong>Feito!</strong> Foto de perfil do usuário alterado com sucesso! </div>")
+                        //$("#alertando").toggle("slow");
+                        var i = 0;
+                        var o = setInterval(() => {
+                            i++
+                            if (i == 3) {
+                                clearInterval(o)
+                                cancela()
+                            }
+                            console.log(i);
+                        }, 1000);
+
+                        function cancela() {
+                            console.log("OPa")
+                            $("#alertando").fadeOut()
+                            window.location.reload()
                         }
                     }
-                }).done(function(e) {
-                    console.log(e)
-                    // Do something
-                })
+                // var form, prct
+                // form = new FormData(env.target)
+                // var files = $('#exampleFormControlFile1')[0].files[0]; // appending the image file to the form data object
+                // form.append('file', files);
+
+                // $.ajax({
+                //     method: 'POST',
+                //     url: "http://localhost/Desirepedia/functions/newfile.php",
+                //     dataType: 'json',
+                //     data: form,
+                //     cache: false,
+                //     processData: false,
+                //     success: function(e) {
+                //         console.log(e)
+                //     },
+                //     error: function(e) {
+                //         console.log(e)
+                //     },
+                //     progress: function(e) {
+                //         //make sure we can compute the length
+                //         if (e.lengthComputable) {
+                //             //calculate the percentage loaded
+                //             var pct = (e.loaded / e.total) * 100;
+
+                //             //log percentage loaded
+                //             console.log(pct);
+                //         }
+                //         //this usually happens when Content-Length isn't set
+                //         else {
+                //             console.warn('Content Length not reported!');
+                //         }
+                //     }
+                // }).done(function(e) {
+                //     console.log(e)
+                //     // Do something
+                // })
             }
         </script>
 
@@ -141,8 +236,14 @@ session_start();
         <div id="perfil3_perfil3" class="row content" style="display: none;">
             <p>Email</p>
 
-            <form action="">
-                <input type="text" class="form-control" placeholder="Nome" value="<?php echo $_SESSION['email']; ?>" id="login_correto" name="user" required>
+            <form action="javascript:void(0)" id="alterar_email">
+                <div class="input-group my-3">
+                    <input type="email" class="form-control" onkeyup="validadeEmail(this.id)" onkeydown="validadeEmail(this.id)" placeholder="Nome" value="<?php echo $_SESSION['email']; ?>" id="email_actual" name="email" required>
+                    <div id="errorMail1" class="invalid-feedback">
+                        .
+                    </div>
+                </div>
+
                 <button class="btn btn-outline"> Salvar Alterações </button>
             </form>
         </div>
@@ -185,12 +286,16 @@ session_start();
                 </div>
                 </p>
                 <div class="input-group">
-                <button class="btn btn-outline my-3" id="button-salvar"> Salvar Alterações </button> <br>
-                <div id="errorSenhaNova3" class="invalid-feedback">
+                    <button class="btn btn-outline my-3" id="button-salvar"> Salvar Alterações </button> <br>
+                    <div id="errorSenhaNova3" class="invalid-feedback">
                         Há erro no formulário!
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div id="alerte-o">
+
         </div>
 
         <script>
@@ -205,13 +310,65 @@ session_start();
                 $(`#${b.id}_${b.id}`).css('display', 'block');
             }
 
-            function validadeEmail() {
+            function changeName(x) {
+                var valor_inpt = $(`#${x}`);
+                if (valor_inpt.val().length < 5) {
+                    valor_inpt.addClass('is-invalid');
+
+                } else {
+                    valor_inpt.removeClass('is-invalid')
+
+                }
+            }
+            document.getElementById("formName").addEventListener('submit', function() {
+                var NomeNovo = $("#novo_Nome").val();
+                var vr = "nameNew";
+                $.ajax({
+                    url: "http://localhost/Desirepedia/functions/changeUser.php",
+                    method: "POST",
+                    data: {
+                        data: NomeNovo,
+                        type: vr
+                    },
+                    dataType: "json"
+                }).done(function(r) {
+
+                    console.log(r)
+
+                    if (r) {
+
+                        $("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong>Feito!</strong> Nome de usuário alterado com sucesso! </div>")
+                        //$("#alertando").toggle("slow");
+                        var i = 0;
+                        var o = setInterval(() => {
+                            i++
+                            if (i == 3) {
+                                clearInterval(o)
+                                cancela()
+                            }
+                            console.log(i);
+                        }, 1000);
+
+                        function cancela() {
+                            console.log("OPa")
+                            $("#alertando").fadeOut()
+                        }
+
+
+                    } else {
+                        console.log("DEU ERRADO!");
+
+                    }
+                })
+            })
+
+            function validadeEmail(x) {
                 var valor_inpt = $(`#${x}`);
 
                 if (!validaEmail(valor_inpt.val())) {
-                    $("#errorMail").text('Por favor, coloque um e-mail válido!');
+                    $("#errorMail1").text('Por favor, coloque um e-mail válido!');
                     valor_inpt.addClass('is-invalid')
-                    
+
                 } else {
 
                     var campo = $(`#${x}`).val();
@@ -223,22 +380,23 @@ session_start();
                         method: "POST",
                         data: {
                             emailR: campo,
-                            type: vr
+                            type: vr,
+                            novo: "true"
                         },
                         dataType: "json"
                     }).done(function(r) {
                         console.log(r, "value")
                         if (r) {
                             valor_inpt.removeClass('is-invalid')
-                            
+
                         } else {
-                            $("#errorMail").text('Email já existente, tente outro!');
+                            $("#errorMail1").text('Email já existente, tente outro!');
                             valor_inpt.addClass('is-invalid')
-                            
+
                         }
                     })
 
-                    
+
 
                     valor_inpt.removeClass('is-invalid')
                 }
@@ -251,6 +409,57 @@ session_start();
                     return regex.test(email);
                 }
             }
+
+            $('#alterar_email').on('submit', () => {
+                var EmailNovo = $("#email_actual").val();
+                if (EmailNovo == "<?php echo $_SESSION['email']; ?>") {
+                    console.log("A2")
+                    return
+                    console.log("A1")
+                }
+
+
+                var vr = "mailNew";
+                $.ajax({
+                    url: "http://localhost/Desirepedia/functions/changeUser.php",
+                    method: "POST",
+                    data: {
+                        data: EmailNovo,
+                        type: vr
+                    },
+                    dataType: "json"
+                }).done(function(r) {
+
+                    console.log(r)
+
+                    if (r) {
+
+                        $("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong>Feito!</strong> Email de usuário alterado com sucesso! </div>")
+                        //$("#alertando").toggle("slow");
+                        var i = 0;
+                        var o = setInterval(() => {
+                            i++
+                            if (i == 3) {
+                                clearInterval(o)
+                                cancela()
+                            }
+                            console.log(i);
+                        }, 1000);
+
+                        function cancela() {
+                            console.log("OPa")
+                            $("#alertando").fadeOut()
+                        }
+
+                        $("#senha-correto").css('display', 'none');
+                        $("#btn-prosseguir").css('display', 'block')
+
+                    } else {
+                        console.log("DEU ERRADO!");
+
+                    }
+                })
+            })
 
             $("#btn-prosseguir").on('submit', () => {
                 console.log("OES")
@@ -273,6 +482,7 @@ session_start();
                         $("#senhaAtual").val("")
                         $("#senha-correto").css('display', 'block');
                         $("#btn-prosseguir").css('display', 'none')
+                        $("#senhaAtual").removeClass('is-invalid');
 
                     } else {
                         $("#senhaAtual").val("")
@@ -293,6 +503,7 @@ session_start();
             })
             var prevent = [];
             prevent[1] = false;
+
             function senha1(x) {
                 var valor_inpt = $(`#${x}`);
 
@@ -337,7 +548,7 @@ session_start();
 
             }
 
-            $("#senha-correto").on("submit", function(){
+            $("#senha-correto").on("submit", function() {
                 prevent.forEach((values) => {
                     if (!values) {
                         $("#button-salvar").addClass('is-invalid');
@@ -345,7 +556,7 @@ session_start();
                         $("#button-salvar").removeClass('is-invalid');
                     }
                 })
-                
+
                 var SenhaNova = $("#senha_nova_correto1").val();
                 var vr = "passNew";
                 $.ajax({
@@ -361,15 +572,36 @@ session_start();
                     console.log(r)
 
                     if (r) {
-                        console.log("TAMO AE    ")
-                        $("#senhaAtual").val("")
-                        $("#senha-correto").css('display', 'block');
-                        $("#btn-prosseguir").css('display', 'none')
+                        console.log("TAMO AE    ");
+                        console.log("DEU CERTO!");
+                        $("#senha_nova_correto2").val("");
+                        $("#senha_nova_correto1").val("");
+
+
+
+                        $("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong>Feito!</strong> Senha de usuário alterada com sucesso! </div>")
+                        //$("#alertando").toggle("slow");
+                        var i = 0;
+                        var o = setInterval(() => {
+                            i++
+                            if (i == 3) {
+                                clearInterval(o)
+                                cancela()
+                            }
+                            console.log(i);
+                        }, 1000);
+
+                        function cancela() {
+                            console.log("OPa")
+                            $("#alertando").fadeOut()
+                        }
+
+                        $("#senha-correto").css('display', 'none');
+                        $("#btn-prosseguir").css('display', 'block')
 
                     } else {
-                        $("#senhaAtual").val("")
+                        console.log("DEU ERRADO!");
 
-                        $("#senhaAtual").addClass('is-invalid');
 
                     }
                     // console.log(r, "value")
@@ -383,9 +615,9 @@ session_start();
                     // }
                 })
 
-                
+
                 //console.log("FOI!")
-                
+
 
             })
         </script>

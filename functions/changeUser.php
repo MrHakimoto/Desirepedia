@@ -38,6 +38,38 @@ if(isset($_POST['type'])) {
         } else {
             echo json_encode(false); 
         }
+    } elseif($_POST['type'] == "mailNew") {
+        $email = $_POST['data'];
+
+
+        $stmt = $pdo->prepare("UPDATE user SET email=:na WHERE id=:co");
+        $stmt->bindValue(':na', $email);
+        $stmt->bindValue(':co', $_SESSION['id']);
+        $stmt->execute();
+
+        $_SESSION['email'] = $email;
+        
+        if ($stmt->rowCount() >= 1) {
+            echo json_encode(true);
+        } else {
+            echo json_encode(false); 
+        }
+    } elseif($_POST['type'] = "nameNew") {
+        $nome = $_POST['data'];
+
+
+        $stmt = $pdo->prepare("UPDATE user SET nome=:na WHERE id=:di");
+        $stmt->bindValue(':na', $nome);
+        $stmt->bindValue(':di', $_SESSION['id']);
+        $stmt->execute();
+
+        $_SESSION['nome'] = $nome;
+        
+        if ($stmt->rowCount() >= 1) {
+            echo json_encode(true);
+        } else {
+            echo json_encode(false); 
+        }
     }
 }
 

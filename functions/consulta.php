@@ -1,7 +1,7 @@
 <?php 
 
 header('Content-Type: application/json');
-
+session_start();
 $pdo = new PDO('mysql:host=localhost; dbname=desirepedia;', 'root', '');
 
 
@@ -13,6 +13,12 @@ if(isset($_POST['type'])) {
         $stmt = $pdo->prepare("SELECT * FROM user WHERE email=:na ");
         $stmt->bindValue(':na', $mail);
         $stmt->execute();
+        
+        if (isset($_SESSION['email'])) {
+            if($_SESSION['email'] == $mail){
+                return;
+            }
+        }
         
         if ($stmt->rowCount() >= 1) {
             echo json_encode(false);

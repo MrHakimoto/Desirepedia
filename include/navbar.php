@@ -6,11 +6,27 @@
     }
   </style>
 </head>
+<?php function url(){
+  return sprintf(
+    "%s://%s",
+    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+    $_SERVER['SERVER_NAME']
+  );
+}
 
-<header class="main-header d-none d-sm-block">
+url();
+
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/Desirepedia/functions/imguser.php";
+   include_once($path);
+// require __DIR__ . '../functions/imguser.php';
+?>
+<header class="main-header d-none d-lg-block">
   <div class="container">
     <nav class="navbar navbar-expand-lg main-nav px-0">
-      <a class="navbar-brand" href="/mojo">
+      <?php $tuos = $_SERVER['REQUEST_URI']; ?>
+      <a class="navbar-brand" href="<?php echo url() ?>/Desirepedia/">
         <img src="http://rajeshdas.com/assets/images/logo.svg" alt="desirepedia.com">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,37 +37,38 @@
       <div class="collapse navbar-collapse d-flex justify-content-end" id="mainMenu">
         <ul class="navbar-nav ml-auto text-uppercase f1">
           <li>
-            <a href="#home" class="active active-first">home</a>
+            
+            <a id="NLink1" href="<?php echo url() ?>/Desirepedia/" class="active active-first">home</a>
           </li>
           <li>
-            <a href="#about">Redação</a>
+            <a id="NLink2" href="#about">Redação</a>
           </li>
           <li>
-            <a href="#service">Serviços</a>
+            <a id="NLink3" href="#service">Serviços</a>
           </li>
           <li>
-            <a href="#project">EXTRA </a>
+            <a id="NLink4" href="#project">EXTRA </a>
           </li>
           <li>
-            <a href="criators/"> Time </a>
+            <a id="NLink5" href="<?php echo url() ?>/Desirepedia/criators"> Time </a>
           </li>
           <li>
-            <a href="#testimony">ENEM </a>
+            <a id="NLink6" href="#testimony">ENEM </a>
           </li>
           <li>
             <a href="#contact">
               <div class="flex-shrink-0 dropdown">
                 <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                  <img src="<?php echo $pathh; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small shadow userDown" aria-labelledby="dropdownUser2">
                   <li><a class="dropdown-item" href="#">New project...</a></li>
-                  <li><a class="dropdown-item" href="#">Configurações</a></li>
-                  <li><a class="dropdown-item" href="user/profile.php">Perfil</a></li>
+                  <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/">Configurações</a></li>
+                  <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/profile.php">Perfil</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="user/logout.php">Sign out</a></li>
+                  <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/logout.php">Sign out</a></li>
                 </ul>
               </div>
             </a>
@@ -62,7 +79,7 @@
   </div>
   <!-- /.container -->
 </header>
-<header class="d-block d-sm-none menu-mobile">
+<header class="d-block d-lg-none menu-mobile">
 
 
   <!-- <nav role="navigation"> -->
@@ -70,7 +87,7 @@
 
   <div id="menuToggle">
     <label class="oto" for="menu-mobile-dropdown">
-      <div class="fixed left-fixed menu-lado-esquerdo p-3 text-center"> <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> </div>
+      <div class="fixed left-fixed menu-lado-esquerdo p-3 text-center"> <img src="<?php echo $pathh; ?>" alt="mdo" width="32" height="32" class="rounded-circle"> </div>
       <input type="checkbox" id="menu-mobile-dropdown" />
     </label>
     <!-- <span></span>
@@ -79,24 +96,24 @@
     <div id="userDropTop" class="fixed" style="position: fixed; z-index: 1; display: none;">
       <div class="flex-shrink-0 dropdown">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          <img src="<?php echo $pathh; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small shadow userDown" aria-labelledby="dropdownUser2">
           <li><a class="dropdown-item" href="#">New project...</a></li>
           <li><a class="dropdown-item" href="#">Configurações</a></li>
-          <li><a class="dropdown-item" href="user/profile.php">Perfil</a></li>
+          <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/profile.php">Perfil</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="user/logout.php">Sign out</a></li>
+          <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/logout.php">Sign out</a></li>
         </ul>
       </div>
     </div>
     <ul id="menu">
-      <li><a href="#">Home</a></li>
+      <li><a href="<?php echo url() ?>/Desirepedia/">Home</a></li>
       <li><a href="#">Redação</a></li>
       <li><a href="#">Serviços</a></li>
-      <li><a href="criators/">Time</a></li>
+      <li><a href="<?php echo url() ?>/Desirepedia/criators">Criadores</a></li>
       <li><a href="#">EXTRA</a></li>
       <li><a href="#">enem</a></li>
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
+<?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,6 +29,12 @@
 </head>
 
 <body>
+    <script>
+        for (var i = 1; 1<=6; i++) {
+            $(`#NLink${i}`).removeClass('active');
+        }
+        $('#NLink5').addClass('active');
+    </script>
 <?php
 
 include_once('../include/navbar.php');
