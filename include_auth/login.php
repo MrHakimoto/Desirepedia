@@ -104,7 +104,7 @@
 	}
 	?>
 	<script>
-		$(document).ready(() => {
+		$(document).ready(function (){
 			$("#login_corretoe").focus();
 		})
 

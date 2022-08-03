@@ -5,34 +5,34 @@ include_once("../functions/conexao.php");
 $con = con();
 header('Content-Type: application/json');
 date_default_timezone_set('America/Sao_Paulo');
-// making the name of the file
+// pega o nome temporário do arquivo
 $file_name = $_FILES['file']['name'];
 
 
 
-// file extension
+// extenção do arquivo 
 $file_extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 //$file_extension = strtolower($file_extension);
 
 $newname = md5(time()) . '-' . date("m-d-y") . '.' . $file_extension;
 
-//This is the file upload Location... a folder called upload
+//o local do arquivo, caminho (path)
 $file_location = '../database/' . $newname;
 
-// Valid image extensions permitted for upload
+// Valida a extensão do arquivo em questão ai as disponiveis
 $image_ext = array("jpg", "png", "jpeg");
 
 $response_data = 0;
 if (in_array($file_extension, $image_ext)) {
-    // Uploading the file to the specified location in line 7
+    // Muda o local do arquivo, de temporário passa a ser oficial
 
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $file_location)) {
-        $response_data = $file_location; //Returning the data that contains the image to be rendered
+        $response_data = $file_location; //retorno
     }
 }
 
-echo json_encode($response_data); //Returning the data to the ajax call
+echo json_encode($response_data); //manda o retorno
 
 
 $query = mysqli_query($con, "INSERT INTO picture_db (id_creator, caminho) VALUES (" . $_SESSION['id'] . ", '" . $file_location . "')");

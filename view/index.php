@@ -10,8 +10,11 @@ try {
     echo $e->getMessage();
 }
 
+session_start();
 
-$sql_prova = "SELECT * FROM " . "enem_ppl_2014";
+$prova_escolhida = $_GET['resolver'];
+
+$sql_prova = "SELECT * FROM " . $prova_escolhida;
 $ir = $con->prepare($sql_prova);
 
 // Execute statement.
@@ -34,6 +37,13 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/nav.css">
     <style>
         .alternate {
             border: 1px solid #084d6e;
@@ -60,24 +70,28 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
             background-color: #084d6e;
             color: white;
         }
-        .alternativate label:hover ~ .alternate {
+
+        .alternativate label:hover~.alternate {
             background-color: #084d6e;
             color: white;
         }
-
     </style>
 </head>
 
 
 <body>
+    <?php
 
+    include_once('../include/navbar.php');
+
+    ?>
 
     <br><br><br><br>
 
 
     <div class="container">
 
-        <h1 class="display-1">Prova</h1>  
+        <h1 class="display-1">Prova</h1>
 
 
 
@@ -232,7 +246,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     if ($(`#alt_${v}_${number}`).is(':checked')) {
                         console.log("deu bom", v)
                         marcado = v;
-                        var test = "<?php echo "enem_ppl_2014"; ?>";
+                        var test = "<?php echo $prova_escolhida; ?>";
                         $.ajax({
                             url: "http://localhost/Desirepedia/view/conferir.php",
                             method: "POST",
@@ -248,11 +262,11 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                             // chama();
                             console.log(r[0])
                             if (r[0]) {
-                                $(`#label_${v}_${number}`).css('background','green');
+                                $(`#label_${v}_${number}`).css('background', 'green');
                                 block(number)
                             } else {
-                                $(`#label_${r[1]}_${number}`).css('background','green');
-                                $(`#label_${v}_${number}`).css('background','red');
+                                $(`#label_${r[1]}_${number}`).css('background', 'green');
+                                $(`#label_${v}_${number}`).css('background', 'red');
                                 block(number)
                             }
 
@@ -281,9 +295,10 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                 // })
 
             }
+
             function block(f) {
                 alternatives.forEach((v) => {
-                    $(`#alt_${v}_${f}`).attr('disabled','disabled');
+                    $(`#alt_${v}_${f}`).attr('disabled', 'disabled');
                 })
             }
         </script>
