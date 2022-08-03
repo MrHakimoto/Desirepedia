@@ -9,6 +9,8 @@ Projeto do T.C.C do grupo Desire, para conclusão do curso de Informática integ
 ##### João Pedro Soares Aguiar
 ##### Filipe Ozanam Dias Pereira
 
+<br />
+
 ### Professores orientadores:
 
 Carlos Manuel Pereira da Costa Filho (Carlão)
@@ -17,13 +19,17 @@ Carlos Manuel Pereira da Costa Filho (Carlão)
 Felipe Cezar de Castro Antunes (Felipão)
 [lattes]( http://lattes.cnpq.br/3156030078276280)
 
+<br />
+<br />
 
 Mostra do Banco de dados:
 
 [Figma](https://www.figma.com/file/lici3xvAiyfHxCEksZ0mJx/Diserep%C3%A9dia?node-id=0%3A1)
 
 
-
+<br />
+<br />
+<br />
 
 
 
