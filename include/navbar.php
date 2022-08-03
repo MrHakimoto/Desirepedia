@@ -63,7 +63,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
                 </a>
                 <ul class="dropdown-menu text-small shadow userDown" aria-labelledby="dropdownUser2">
                   <li><a class="dropdown-item" href="#">New project...</a></li>
-                  <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/">Configurações</a></li>
+                  <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/config.php">Configurações</a></li>
                   <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/profile.php">Perfil</a></li>
                   <li>
                     <hr class="dropdown-divider">
@@ -100,7 +100,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
         </a>
         <ul class="dropdown-menu text-small shadow userDown" aria-labelledby="dropdownUser2">
           <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Configurações</a></li>
+          <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/config.php">Configurações</a></li>
           <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/profile.php">Perfil</a></li>
           <li>
             <hr class="dropdown-divider">
