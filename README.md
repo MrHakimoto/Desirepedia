@@ -35,4 +35,4 @@ Mostra do Banco de dados:
 
 
 
->**Magna et mirabilia sunt opera tua, Domine nostri**
+>**Magna et mirabilia sunt opera tua, Domine nostri omnipotens!**
