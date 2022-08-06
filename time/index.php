@@ -99,7 +99,7 @@
 
                 <div id="natali-front-man" class="transicao" style="z-index: 1;">
                     <div class="d-flex justify-content-center m-3">
-                        <img src="../database/arthur_leader1.jpg" alt="Natali" class="rounded-circle">
+                        <img src="../database/imagem-natali-certa.jpg" alt="Natali" width="200px" class="rounded-circle">
                     </div>
                     <div class="d-flex justify-content-center text-center p-1">
                         <h3>Nátali Martins Pena <br> Natal </h3>
@@ -117,7 +117,7 @@
 
                 <div id="victor-front-man" class="transicao" style="z-index: 1;">
                     <div class="d-flex justify-content-center m-3">
-                        <img src="../database/arthur_leader1.jpg" alt="João Victor" class="rounded-circle">
+                        <img src="../database/jaozin-image.jpg" width="200px" alt="João Victor" class="rounded-circle">
                     </div>
                     <div class="d-flex justify-content-center text-center p-1">
                         <h3> João Victor Mendes Aguiar <br> JãoZin </h3>
@@ -135,7 +135,7 @@
 
                 <div id="jota-front-man" class="transicao" style="z-index: 1;">
                     <div class="d-flex justify-content-center m-3">
-                        <img src="../database/arthur_leader1.jpg" alt="João Pedro" class="rounded-circle">
+                        <img src="../database/jotao-image.jpg" width="200px" alt="João Pedro" class="rounded-circle">
                     </div>
                     <div class="d-flex justify-content-center text-center p-1">
                         <h3>João Pedro Soares Aguiar <br> Jotão </h3>
@@ -147,13 +147,23 @@
         <div class="card m-5 p-3">
             <div class="row card m-5 p-5 tolfix" id="filipe">
 
-                <p class="text-white transicao" id="filipe-descricao" style="z-index: -1; position: absolute;">Olá, galera <br> Meu nome é Filipe, tenho, atualmente 17 anos e estou no 3 ano do ensino médio... e, uma bosta, rs rs rs. <br> <br> oasjfoiadj
+                <p class="text-white transicao" id="filipe-descricao" style="z-index: -1; position: absolute;">
+                Fala pessoal, beleza?! <br>
+                Bem, sou o Filipe um dos desenvolvedores desse site, e foi muito gratificante participar da criação dele
+                além de ter a companhia desse time fenomenal foi serventia de muito aprendizado. <br>
+                Nasci e moro atualmente em Janaúba, cidade perdida da velha Minas Gerais e, infelizmente, mesmo com todos
+                os conhecimentos adquiridos na área da Informática não pretendo seguir nela, mesmo assim tudo que foi aprendizado durante o curso que fiz no IFNMG da minha cidade vai ser utilizado, sem dúvida!
+
+                <br> <br>
+
+                Obrigado por acessaram, espero que gostem, imensamente!
+                rs
                 </p>
 
 
                 <div id="filipe-front-man" class="transicao" style="z-index: 1;">
                     <div class="d-flex justify-content-center m-3">
-                        <img src="../database/arthur_leader1.jpg" alt="Filipe" class="rounded-circle">
+                        <img src="../database/filipe-image.jpg" width="200px" alt="Filipe" class="rounded-circle">
                     </div>
                     <div class="d-flex justify-content-center text-center p-1">
                         <h3> Filipe Ozanam Dias Pereira <br>  </h3>

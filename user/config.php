@@ -12,7 +12,7 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <title> Profile | Desirepedia </title>
     <style>
@@ -21,10 +21,7 @@ session_start();
             text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
         }
 
-        .row img {
-            box-shadow: inset 0px 0px 18px 1px #2E77FF;
-            box-shadow: 0px 0px 11px 4px #FC4CFF;
-        }
+
 
         section li {
             display: inline-block;
@@ -58,7 +55,12 @@ session_start();
     <b></b>
     </b>
     <div class="container mt-5 meio">
-        <?php echo $_SERVER['DOCUMENT_ROOT']; ?>
+        <?php
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $path .= "/Desirepedia/functions/imguser.php";
+        include_once($path);
+
+        echo $_SERVER['DOCUMENT_ROOT']; ?>
 
 
         <div class="row">
@@ -77,18 +79,43 @@ session_start();
 
         <div id="perfil1_perfil1" class="row content">
             <p>Nome</p>
-            <form action="pastadestino.php" method="POST">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputName">Nome</label>
-                        <input type="text" id="inputName" class="form-control" placeholder="John" required>
+            <form action="javascript:void(0)" method="POST">
+                <div class="row">
+                    <div class="col-12 d-none">
+
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputSurname">Sobrenome</label>
-                        <input type="text" class="form-control" id="inputSurname" placeholder="Doe" required>
+                    <div class="col-12 col-md-8">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Nome</label>
+                                <input type="text" id="inputName" class="form-control" placeholder="John" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputSurname">Sobrenome</label>
+                                <input type="text" class="form-control" id="inputSurname" placeholder="Doe" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="row mx-5 text-center">
+                            <div style='background="url(<?php echo $pathh; ?>)";'></div>
+                            <img src="<?php echo $pathh; ?>"  alt="mdo" class="img-thumbnail rounded float-start" >
+                        </div>
                     </div>
                 </div>
-                
+
+                <div class="form-group">
+                    <label for="inputAddress">Telefone</label>
+                    <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone (com DDD)" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">DDD</label>
+                    <input type="text" class="form-control" name="ddd" id="ddd" placeholder="DDD" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">CPF</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF" required>
+                </div>
                 <div class="form-group">
                     <label for="inputAddress">CEP</label>
                     <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" required>
@@ -150,10 +177,59 @@ session_start();
         </div>
 
         <div id="perfil2_perfil2" class="row content">
-            
+
         </div>
 
         <script>
+            $('#cpf').blur(function() {
+                var cpf = $('#cpf').val().replace(/[^0-9]/g, '').toString();
+
+                if (cpf.length == 11) {
+                    var v = [];
+
+                    //Calcula o primeiro dígito de verificação.
+                    v[0] = 1 * cpf[0] + 2 * cpf[1] + 3 * cpf[2];
+                    v[0] += 4 * cpf[3] + 5 * cpf[4] + 6 * cpf[5];
+                    v[0] += 7 * cpf[6] + 8 * cpf[7] + 9 * cpf[8];
+                    v[0] = v[0] % 11;
+                    v[0] = v[0] % 10;
+
+                    //Calcula o segundo dígito de verificação.
+                    v[1] = 1 * cpf[1] + 2 * cpf[2] + 3 * cpf[3];
+                    v[1] += 4 * cpf[4] + 5 * cpf[5] + 6 * cpf[6];
+                    v[1] += 7 * cpf[7] + 8 * cpf[8] + 9 * v[0];
+                    v[1] = v[1] % 11;
+                    v[1] = v[1] % 10;
+
+                    //Retorna Verdadeiro se os dígitos de verificação são os esperados.
+                    if ((v[0] != cpf[9]) || (v[1] != cpf[10])) {
+                        alert('CPF inválido: ' + cpf);
+
+                        $('#cpf').val('');
+                        $('#cpf').focus();
+                    }
+                } else {
+                    alert('CPF inválido:' + cpf);
+
+                    $('#cpf').val('');
+                    $('#cpf').focus();
+                }
+            });
+            $(document).ready(function() {
+                var CampoCEP = $("#cep");
+                CampoCEP.mask('00000-000');
+                var CampoCpf = $("#cpf");
+                CampoCpf.mask('000.000.000-00', {
+                    reverse: true
+                });
+                var CampoTelefone = $("#telefone");
+                CampoTelefone.mask('(00) 0 0000-0000', {
+
+                });
+            });
+
+
+
             (function() {
 
                 const cep = document.querySelector("input[name=cep]");
@@ -179,7 +255,7 @@ session_start();
                                             option = select.options[i];
 
                                             if (option.value == v) {
-                                                
+
                                                 //coleto a opção e atribuo o select à ela
                                                 option.setAttribute('selected', true);
 
@@ -194,6 +270,7 @@ session_start();
                                 document.querySelector('input[name=bairro]').value = json.bairro;
                                 document.querySelector('input[name=cidade]').value = json.localidade;
                                 document.querySelector('input[name=estado]').value = json.uf;
+                                document.querySelector('input[name=ddd]').value = json.ddd;
                             }
 
                         });
@@ -208,7 +285,6 @@ session_start();
 
 
             })();
-
         </script>
 
 

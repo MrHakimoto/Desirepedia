@@ -21,9 +21,9 @@ if (isset($_POST['enun'])) {
 
     $correta = $_POST['alt'];
 
-    $materia = isset($_POST['materia']) ? $_POST['materia'] : null;
+    $materia = isset($_POST['materia']) ? $_POST['materia'] : "null";
 
-    $conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : null;
+    $conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : "null";
 
 
     //00 000
@@ -38,13 +38,18 @@ if (isset($_POST['enun'])) {
         q_alt_e,
         q_correct,
         q_materia,
-        q_conteudo) VALUES ($global, '$enunciado', '$altA', '$altB', '$altC', '$altD', '$altE', '$correta', '$materia', '$conteudo');";
+        q_conteudo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    $inserir = $con->prepare($sql_inserir);
-    $inserir->execute();
+    $stmt = $con->prepare($sql_inserir);
+    //$stmt->bind_param("sbssssssss", $global, $enunciado, $altA, $altB, $altC, $altD, $altE, $correta, $materia, $conteudo);
+   $array =  array($global, $enunciado, $altA, $altB, $altC, $altD, $altE, $correta, $materia, $conteudo);
+    try {
+        $stmt->execute($array);
+    } catch (PDOException $e) {
+        echo 'ERROR UPDATING CONTENT: ' . $e->getMessage();
+    }
 
-header('Location: index.php?labore=1&test='. $test);
-
+    header('Location: index.php?labore=1&test=' . $test);
 }
 
     // if ($stmt->rowCount() >= 1) {

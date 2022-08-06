@@ -6,7 +6,8 @@
     }
   </style>
 </head>
-<?php function url(){
+<?php function url()
+{
   return sprintf(
     "%s://%s",
     isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
@@ -17,16 +18,75 @@
 url();
 
 
+
+
+function conter($palavra)
+{
+  $local = $_SERVER['PHP_SELF'];
+  $calc = str_contains($local, $palavra);
+  if ($calc) {
+    return true;
+  }
+}
+
+$lista = array("extra", "time", "enem", "redacao", "services");
+
+
+$opcao = "home";
+$lenght = count($lista);
+$vhs = 0;
+for ($i = 0; $lenght > $i; $i++) {
+  if (conter($lista[$i])) {
+    $opcao = $lista[$i];
+    $vhs++;
+  }
+  if ($vhs == 5) {
+    $opcao = "home";
+  }
+}
+
+switch ($opcao) {
+  case "home":
+    $adicionar_class = "1";
+   // echo "<script> alert('FELA') </script>";
+    break;
+  case "redacao":
+    $adicionar_class = "2";
+   // echo "<script> alert('redacao') </script>";
+    break;
+  case "services":
+    $adicionar_class = "3";
+    //echo "<script> alert('services') </script>";
+    break;
+  case "extra":
+    $adicionar_class = "4";
+    //echo "<script> alert('SALVE') </script>";
+    break;
+
+  case "time":
+    $adicionar_class = "5";
+   // echo "<script> alert('quebrada') </script>";
+    break;
+  case "enem":
+    $adicionar_class = "6";
+    // echo "<script> alert('enem') </script>";
+    break;
+}
+
+
 $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/Desirepedia/functions/imguser.php";
-   include_once($path);
+$path .= "/Desirepedia/functions/imguser.php";
+include_once($path);
 // require __DIR__ . '../functions/imguser.php';
 ?>
+
+
 <header class="main-header d-none d-lg-block">
   <div class="container">
     <nav class="navbar navbar-expand-lg main-nav px-0">
       <?php $tuos = $_SERVER['REQUEST_URI']; ?>
       <a class="navbar-brand" href="<?php echo url() ?>/Desirepedia/">
+        <?php  ?>
         <img src="http://rajeshdas.com/assets/images/logo.svg" alt="desirepedia.com">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,23 +97,23 @@ $path = $_SERVER['DOCUMENT_ROOT'];
       <div class="collapse navbar-collapse d-flex justify-content-end" id="mainMenu">
         <ul class="navbar-nav ml-auto text-uppercase f1">
           <li>
-            
+
             <a id="NLink1" href="<?php echo url() ?>/Desirepedia/" class="active active-first">home</a>
           </li>
           <li>
-            <a id="NLink2" href="#about">Redação</a>
+            <a id="NLink2" href="<?php echo url() ?>/Desirepedia/redacao">Redação</a>
           </li>
           <li>
-            <a id="NLink3" href="#service">Serviços</a>
+            <a id="NLink3" href="<?php echo url() ?>/Desirepedia/services">Serviços</a>
           </li>
           <li>
-            <a id="NLink4" href="#project">EXTRA </a>
+            <a id="NLink4" href="<?php echo url() ?>/Desirepedia/extra">EXTRA </a>
           </li>
           <li>
-            <a id="NLink5" href="<?php echo url() ?>/Desirepedia/criators"> Time </a>
+            <a id="NLink5" href="<?php echo url() ?>/Desirepedia/time"> Time </a>
           </li>
           <li>
-            <a id="NLink6" href="#testimony">ENEM </a>
+            <a id="NLink6" href="<?php echo url() ?>/Desirepedia/enem">ENEM </a>
           </li>
           <li>
             <a href="#contact">
@@ -79,6 +139,24 @@ $path = $_SERVER['DOCUMENT_ROOT'];
   </div>
   <!-- /.container -->
 </header>
+<script>
+  var number = parseInt("<?php echo $adicionar_class; ?>");
+for(var o = 0; o < 6; o++ ) {
+  var l = $(`#NLink${o}`)
+  l.removeClass('active')
+  l.removeClass('active-first')
+
+  
+}
+
+
+  $(`#NLink${number}`).addClass('active');
+  $(`#NLink${number}`).addClass('active-first');
+    if(o == number) {
+      $(`#NLink${number}`).addClass('active-first');
+    }
+  
+</script>
 <header class="d-block d-lg-none menu-mobile">
 
 
@@ -111,11 +189,11 @@ $path = $_SERVER['DOCUMENT_ROOT'];
     </div>
     <ul id="menu">
       <li><a href="<?php echo url() ?>/Desirepedia/">Home</a></li>
-      <li><a href="#">Redação</a></li>
-      <li><a href="#">Serviços</a></li>
+      <li><a href="<?php echo url() ?>/Desirepedia/redacao">Redação</a></li>
+      <li><a href="<?php echo url() ?>/Desirepedia/services">Serviços</a></li>
       <li><a href="<?php echo url() ?>/Desirepedia/criators">Criadores</a></li>
-      <li><a href="#">EXTRA</a></li>
-      <li><a href="#">enem</a></li>
+      <li><a href="<?php echo url() ?>/Desirepedia/extra">EXTRA</a></li>
+      <li><a href="<?php echo url() ?>/Desirepedia/enem">Enem</a></li>
 
     </ul>
   </div>
@@ -124,12 +202,12 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 </header>
 <script>
   const $menu = $('#menu')
-  const $menuuser =  $("#userDropTop")
+  const $menuuser = $("#userDropTop")
   //aberto
   const onMouseUp = e => {
     if (!$menu.is(e.target) && $menu.has(e.target).length === 0 && !$menuuser.is(e.target) && $menuuser.has(e.target).length === 0) {
       $menu.removeClass('aberto')
-      
+
       $("#userDropTop").css("display", "none");
     }
   }

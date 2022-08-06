@@ -51,14 +51,25 @@ echo __DIR__;
         selector: 'textarea#enunciado',
         skin: 'bootstrap',
         plugins: 'lists, link, image, media',
-        toolbar: 'h1 bold italic align fontsize fontfamily strikethrough blockquote bullist numlist backcolor | link image media | removeformat',
+        toolbar: 'h1 bold italic align fontsize fontfamily lineheight strikethrough blockquote bullist outdent indent forecolor backcolor | link image media | removeformat',
+        color_map: [
+            '000000', 'Black',
+            '808080', 'Gray',
+            'FFFFFF', 'White',
+            'FF0000', 'Red',
+            'FFFF00', 'Yellow',
+            '008000', 'Green',
+            '0000FF', 'Blue'
+        ],
+        line_height_formats: '0.5 1 1.2 1.4 1.6 2',
         menubar: false,
+
     });
     tinymce.init({
         selector: '#altA',
         skin: 'bootstrap',
         plugins: 'lists, link, image, media',
-        toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat',
+        toolbar: 'h1 h2 bold fontsize italic strikethrough align outdent indent blockquote bullist numlist backcolor | link image media | removeformat',
         menubar: false,
         height: 150
     });
@@ -66,7 +77,7 @@ echo __DIR__;
         selector: '#altB',
         skin: 'bootstrap',
         plugins: 'lists, link, image, media',
-        toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat',
+        toolbar: 'h1 h2 bold fontsize italic strikethrough align outdent indent blockquote bullist numlist backcolor | link image media | removeformat',
         menubar: false,
         height: 150
     });
@@ -74,7 +85,7 @@ echo __DIR__;
         selector: '#altC',
         skin: 'bootstrap',
         plugins: 'lists, link, image, media',
-        toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat',
+        toolbar: 'h1 h2 bold fontsize italic strikethrough align outdent indent blockquote bullist numlist backcolor | link image media | removeformat',
         menubar: false,
         height: 150
     });
@@ -82,7 +93,7 @@ echo __DIR__;
         selector: '#altD',
         skin: 'bootstrap',
         plugins: 'lists, link, image, media',
-        toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat',
+        toolbar: 'h1 h2 bold fontsize italic strikethrough align outdent indent blockquote bullist numlist backcolor | link image media | removeformat',
         menubar: false,
         height: 150
     });
@@ -90,7 +101,7 @@ echo __DIR__;
         selector: '#altE',
         skin: 'bootstrap',
         plugins: 'lists, link, image, media',
-        toolbar: 'h1 h2 bold fontsize italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat',
+        toolbar: 'h1 h2 bold fontsize italic strikethrough align outdent indent blockquote bullist numlist backcolor | link image media | removeformat',
         menubar: false,
         height: 150
     });
@@ -108,53 +119,65 @@ echo __DIR__;
             <h1 class="h2 mb-4">Editando> Questão <?php echo $n_questao; ?></h1>
             <label>Describe the issue in detail</label>
             <div class="form-group" class="border border-primary">
-                <form action="" method="POST" id="alter-question">
+                <form action="operatorEditing.php" method="POST" id="alter-question-operating">
+                    <input type="text" id="numero" name="num" value="<?php echo $n_questao; ?>" readonly style="display: block;"> <br>
+                    <input type="text" id="prova" name="prova" value="<?php echo $_GET['test']; ?>" readonly style="display: block;"> <br>
                     <div class="my-5">
                         <p>Enunciado</p>
-                        <textarea name="enun" id="enunciado"> <?php echo $enunciado; ?> </textarea>
+                        <textarea id="enunciado" name="enunciado"> <?php echo $enunciado; ?> </textarea>
                     </div>
                     <div class="my-5">
                         <p>Alternativa A:</p>
-                        <input type="text" id="altA" name="alA" value="<?php echo $value_a; ?>">
+                        <textarea  name="altA" id="altA"><?php echo $value_a; ?></textarea>
                     </div>
 
                     <div class="my-5">
                         <p>Alternativa B:</p>
-                        <input type="text" id="altB" name="alB" style="height:170px;" value="<?php echo $value_b; ?>">
+                        <textarea  name="altB" id="altB"><?php echo $value_b; ?></textarea>
                     </div>
 
                     <div class="my-5">
                         <p>Alternativa C:</p>
-                        <input type="text" id="altC" name="alC" value="<?php echo $value_c; ?>">
+                        <textarea  name="altC" id="altC"><?php echo $value_c; ?></textarea>
                     </div>
 
                     <div class="my-5">
                         <p>Alternativa D:</p>
-                        <input type="text" id="altD" name="alD" value="<?php echo $value_d; ?>">
+                        <textarea  name="altD" id="altD"><?php echo $value_d; ?></textarea>
                     </div>
 
                     <div class="my-5">
                         <p>Alternativa E:</p>
-                        <input type="text" id="altE" name="alE" value="<?php echo $value_e; ?>">
+                        <textarea  name="altE" id="altE"><?php echo $value_e; ?></textarea>
                     </div>
 
                     <br>
                     <div class="my-5">
                         <p>Alternativa Correta: </p>
                         <p> <label for="alternativa_A" class="d-block p-2">
-                                <input class="mr-1" type="radio" name="alt" id="alternativa_A" value="A" <?php if (isset($certo_a)) { echo $certo_a; } ?>> Alternativa A
+                                <input class="mr-1" type="radio" name="altCorret" id="alternativa_A" value="A" <?php if (isset($certo_a)) {
+                                                                                                                    echo $certo_a;
+                                                                                                                } ?>> Alternativa A
                             </label> </p>
                         <p> <label for="alternativa_B" class="d-block p-2">
-                                <input class="mr-1" type="radio" name="alt" id="alternativa_B" value="B" <?php if (isset($certo_b)) { echo $certo_b; } ?>> Alternativa B
+                                <input class="mr-1" type="radio" name="altCorret" id="alternativa_B" value="B" <?php if (isset($certo_b)) {
+                                                                                                                    echo $certo_b;
+                                                                                                                } ?>> Alternativa B
                             </label> </p>
                         <p> <label for="alternativa_C" class="d-block p-2">
-                                <input class="mr-1" type="radio" name="alt" id="alternativa_C" value="C" <?php if (isset($certo_c)) { echo $certo_c; } ?>> Alternativa C
+                                <input class="mr-1" type="radio" name="altCorret" id="alternativa_C" value="C" <?php if (isset($certo_c)) {
+                                                                                                                    echo $certo_c;
+                                                                                                                } ?>> Alternativa C
                             </label> </p>
                         <p> <label for="alternativa_D" class="d-block p-2">
-                                <input class="mr-1" type="radio" name="alt" id="alternativa_D" value="D" <?php if (isset($certo_d)) { echo $certo_d; } ?>> Alternativa D
+                                <input class="mr-1" type="radio" name="altCorret" id="alternativa_D" value="D" <?php if (isset($certo_d)) {
+                                                                                                                    echo $certo_d;
+                                                                                                                } ?>> Alternativa D
                             </label> </p>
                         <p> <label for="alternativa_E" class="d-block p-2">
-                                <input class="mr-1" type="radio" name="alt" id="alternativa_E" value="E" <?php if (isset($certo_e)) { echo $certo_e; } ?>> Alternativa E
+                                <input class="mr-1" type="radio" name="altCorret" id="alternativa_E" value="E" <?php if (isset($certo_e)) {
+                                                                                                                    echo $certo_e;
+                                                                                                                } ?>> Alternativa E
                             </label> </p>
                     </div>
             </div>
@@ -169,39 +192,41 @@ echo __DIR__;
 </div>
 
 <script>
-   $("#alter-question").submit(function(e){
-        e.preventDefault();
-        
-        var prova = $('#prova').val(); 
+    // $("#alter-question-operating").submit(function(e) {
+    //     e.preventDefault();
 
-        var num = "<?php echo $n_questao; ?>";
-        var enunciado = $('#enunciado').val();
-        var altA = $('#altA').val();
-        var altB = $('#altB').val();
-        var altC = $('#altC').val();
-        var altD = $('#altD').val();
-        var altE = $('#altE').val();
-        
-        var correct = $("input[name='alt']:checked").val();
-        
-        $.ajax({
-            url: "http://localhost/Desirepedia/admin/includes/operatorEditing.php",
-            method: "POST",
-            data: {
-                prova: prova,
-                num: num,
-                enunciado: enunciado,
-                altA: altA,
-                altB: altB,
-                altC: altC,
-                altD: altD,
-                altE: altE,
-                correct: correct
-            },
-            dataType: "json"
-        }).done(function(r){
+    //     var prova = $('#prova').val();
 
-        })
-    })
+    //     var num = "<?php echo $n_questao; ?>";
+    //     var enunciado = $('#enunciado').val();
+    //     var altA = $('#altA').val();
+    //     var altB = $('#altB').val();
+    //     var altC = $('#altC').val();
+    //     var altD = $('#altD').val();
+    //     var altE = $('#altE').val();
 
+    //     console.log(prova)
+    //     console.log(enunciado)
+
+    //     var correct = $("input[name='altCorret']:checked").val();
+
+    //     $.ajax({
+    //         url: "http://localhost/Desirepedia/admin/operatorEditing.php",
+    //         method: "POST",
+    //         data: {
+    //             prova: prova,
+    //             num: num,
+    //             enunciado: enunciado,
+    //             altA: altA,
+    //             altB: altB,
+    //             altC: altC,
+    //             altD: altD,
+    //             altE: altE,
+    //             altCorret: correct
+    //         },
+    //         dataType: "json"
+    //     }).done(function(r) {
+    //         console.log(r)
+    //     })
+    // })
 </script>
