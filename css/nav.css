@@ -4,7 +4,7 @@
 */
 
 body {
-background: #2d2d7f !important;
+background: #06090F !important;
 }
 
 /* main-header start */
@@ -78,15 +78,18 @@ z-index           : 99;
 width             : 100%;
 -webkit-transition: all 0.4s ease;
 transition        : all 0.4s ease;
+transition: top 0.3s !important;
 }
 
 .main-header.fixed-nav {
 top               : 0;
+transition: top 0.3s;
 background        : #fff;
 -webkit-box-shadow: 0 8px 12px -8px rgba(0, 0, 0, 0.09);
 box-shadow        : 0 8px 12px -8px rgba(0, 0, 0, 0.09);
 -webkit-transition: all 0.4s ease;
 transition        : all 0.4s ease;
+transition: top 0.3s !important;
 }
 
 .main-header.fixed-nav .navbar-brand>img:last-of-type {
@@ -330,4 +333,13 @@ animation: fadeInLeft 0.4s both 0.4s;
 
 .menu-mobile #menuToggle input:checked~ul {
     transform: none;
+}
+
+}
+#navbar-Grande {
+    transition: top 0.5s;
+}
+.navbar-sumiu {
+    top: -150px;
+    
 }

@@ -48,11 +48,11 @@ for ($i = 0; $lenght > $i; $i++) {
 switch ($opcao) {
   case "home":
     $adicionar_class = "1";
-   // echo "<script> alert('FELA') </script>";
+    // echo "<script> alert('FELA') </script>";
     break;
   case "redacao":
     $adicionar_class = "2";
-   // echo "<script> alert('redacao') </script>";
+    // echo "<script> alert('redacao') </script>";
     break;
   case "services":
     $adicionar_class = "3";
@@ -65,7 +65,7 @@ switch ($opcao) {
 
   case "time":
     $adicionar_class = "5";
-   // echo "<script> alert('quebrada') </script>";
+    // echo "<script> alert('quebrada') </script>";
     break;
   case "enem":
     $adicionar_class = "6";
@@ -81,9 +81,9 @@ include_once($path);
 ?>
 
 
-<header class="main-header d-none d-lg-block">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg main-nav px-0">
+<header class="main-header d-none d-lg-block ">
+  <div class="container navbar-Grande">
+    <nav id="navbar-Grande" style="transition: 0.5s;" class="navbar navbar-expand-lg main-nav px-0">
       <?php $tuos = $_SERVER['REQUEST_URI']; ?>
       <a class="navbar-brand" href="<?php echo url() ?>/Desirepedia/">
         <?php  ?>
@@ -141,21 +141,34 @@ include_once($path);
 </header>
 <script>
   var number = parseInt("<?php echo $adicionar_class; ?>");
-for(var o = 0; o < 6; o++ ) {
-  var l = $(`#NLink${o}`)
-  l.removeClass('active')
-  l.removeClass('active-first')
+  for (var o = 0; o < 6; o++) {
+    var l = $(`#NLink${o}`)
+    l.removeClass('active')
+    l.removeClass('active-first')
+  }
 
-  
-}
+  var ultimaRolagem = window.scrollY;
+
+
+  window.addEventListener('scroll', () => {
+    // var nav_sumir = $("#navbar-Grande");
+    var nav_sumir = $("#navbar-Grande")
+    if (ultimaRolagem < window.scrollY) {
+      // nav_sumir.addClass('navbar-sumiu ')
+      document.getElementById("navbar-Grande").style.top = "-160px";
+      } else {
+      // nav_sumir.removeClass('navbar-sumiu')
+      document.getElementById("navbar-Grande").style.top = "0px";
+    }
+    ultimaRolagem = window.scrollY;
+  })
 
 
   $(`#NLink${number}`).addClass('active');
   $(`#NLink${number}`).addClass('active-first');
-    if(o == number) {
-      $(`#NLink${number}`).addClass('active-first');
-    }
-  
+  if (o == number) {
+    $(`#NLink${number}`).addClass('active-first');
+  }
 </script>
 <header class="d-block d-lg-none menu-mobile">
 
