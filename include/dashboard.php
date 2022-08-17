@@ -27,6 +27,11 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="http://localhost/Desirepedia/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/Desirepedia/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/Desirepedia/favicon/favicon-16x16.png">
+    <link rel="manifest" href="http://localhost/Desirepedia/favicon/site.webmanifest">
+
     <title> Dashboard </title>
 </head>
 
@@ -48,20 +53,20 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
             <div class="card-body">
                 This is some text within a card body.
                 <div class="row">
-                <?php
-                foreach ($iremos as $row) {
-                    //print_r($row);
-                    
-                    $nome_da_prova_usuario = $row['nome_bo_prova'];
+                    <?php
+                    foreach ($iremos as $row) {
+                        //print_r($row);
 
-                    $nome_da_prova_bd = $row['nome_bd_prova'];
+                        $nome_da_prova_usuario = $row['nome_bo_prova'];
 
-                    $id_prova = $row['codigo'];
-                    
+                        $nome_da_prova_bd = $row['nome_bd_prova'];
 
+                        $id_prova = $row['codigo'];
 
 
-echo "<div class='col-12 col-md-6'>
+
+
+                        echo "<div class='col-12 col-md-6'>
                         <div class='card mb-3' style='max-width: 540px;'>
                             <div class='row g-0'>
                                 <div class='col-md-4'>
@@ -81,8 +86,8 @@ echo "<div class='col-12 col-md-6'>
                         </div>
 
                     </div>";
-                }?>
-                
+                    } ?>
+
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -95,7 +100,7 @@ echo "<div class='col-12 col-md-6'>
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>

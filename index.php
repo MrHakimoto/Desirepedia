@@ -7,6 +7,8 @@ try {
     echo $e->getMessage();
 }
 
+
+include_once("functions/path.php");
 ?>
 <!-- 
     Inicio da aplicação, 

@@ -52,11 +52,12 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/nav.css">
+    <title> <?php echo $prova_escolhida; ?> | Desirepedia </title>
     <style>
         .alternate {
-            border: 1px solid #084d6e;
+            border: 1px solid #5A2BB0;
             border-radius: 50%;
-            color: #084d6e;
+            color: #5A2BB0;
             display: inline-block;
             font-size: 12px;
             font-weight: 600;
@@ -76,12 +77,12 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .alternate:hover {
-            background-color: #084d6e;
+            background-color: #5A2BB0;
             color: white;
         }
 
         .alternativate label:hover~.alternate {
-            background-color: #084d6e;
+            background-color: #5A2BB0;
             color: white;
         }
     </style>
@@ -138,7 +139,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
             <p class='card-text'> $enunciado </p>
 
 
-            <div class='card p-2'>
+            <div class='card p-2' style='border-color: #81B02B;'>
                 <div class='row mb-1 alternativate'>
                     <label for='alt_A_$global' class='p-1' >
                     <div class='p-2' id='label_A_$global'>
@@ -230,12 +231,12 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                 alternatives.forEach((v) => {
                     if ($(`#alt_${v}_${number}`).is(':checked')) {
                         console.log("deu bom", v)
-                        $(`#bonitim_${v}_${number}`).css('background', '#084d6e');
+                        $(`#bonitim_${v}_${number}`).css('background', '#5A2BB0');
                         $(`#bonitim_${v}_${number}`).css('color', 'white');
                     } else {
                         console.log("deu ruim", v)
                         $(`#bonitim_${v}_${number}`).css('background', 'none');
-                        $(`#bonitim_${v}_${number}`).css('color', '#084d6e');
+                        $(`#bonitim_${v}_${number}`).css('color', '#5A2BB0');
                     }
                 })
 

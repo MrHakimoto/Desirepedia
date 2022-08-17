@@ -82,12 +82,13 @@ include_once($path);
 
 
 <header class="main-header d-none d-lg-block ">
+  
   <div class="container navbar-Grande">
     <nav id="navbar-Grande" style="transition: 0.5s;" class="navbar navbar-expand-lg main-nav px-0">
       <?php $tuos = $_SERVER['REQUEST_URI']; ?>
       <a class="navbar-brand" href="<?php echo url() ?>/Desirepedia/">
         <?php  ?>
-        <img src="http://rajeshdas.com/assets/images/logo.svg" alt="desirepedia.com">
+        <img src="http://localhost/Desirepedia/database/LOGO-DESIREPEDIA.png" alt="desirepedia.com">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="icon-bar icon-bar-1"></span>
@@ -110,7 +111,7 @@ include_once($path);
             <a id="NLink4" href="<?php echo url() ?>/Desirepedia/extra">EXTRA </a>
           </li>
           <li>
-            <a id="NLink5" href="<?php echo url() ?>/Desirepedia/time"> Time </a>
+            <a id="NLink5" href="<?php echo $_SESSION['pathMain']; ?>/time"> Time </a>
           </li>
           <li>
             <a id="NLink6" href="<?php echo url() ?>/Desirepedia/enem">ENEM </a>
