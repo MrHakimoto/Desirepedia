@@ -162,21 +162,21 @@ $global = $codigo . $questao_num;
                     <input type="text" value="<?php echo $global; ?>" name="globals" style="display: none;">
                     <input type="text" value="<?php echo $_GET['test']; ?>" name="test" style="display: none;">
 
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select name="materia" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
                         <option selected>Selecione uma disciplina</option>
-                        <option value="0">Biologia</option>
-                        <option value="1">Filosofia</option>
-                        <option value="2">Física</option>
-                        <option value="3">Geografia</option>
-                        <option value="4">História</option>
-                        <option value="5">Literatura</option>
-                        <option value="6">Matemática</option>
-                        <option value="7">Português</option>
-                        <option value="8">Química</option>
-                        <option value="9">Sociologia</option>
-                        <option value="10">Espanhol</option>
-                        <option value="11">Inglês</option>
-                        <option value="12">Arte</option>
+                        <option value="Biologia">Biologia</option>
+                        <option value="Filosofia">Filosofia</option>
+                        <option value="Física">Física</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="História">História</option>
+                        <option value="Literatura">Literatura</option>
+                        <option value="Matemática">Matemática</option>
+                        <option value="Português">Português</option>
+                        <option value="Química">Química</option>
+                        <option value="Sociologia">Sociologia</option>
+                        <option value="Espanhol">Espanhol</option>
+                        <option value="Inglês">Inglês</option>
+                        <option value="Arte">Arte</option>
                     </select>
 
 

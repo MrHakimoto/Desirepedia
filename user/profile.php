@@ -26,11 +26,7 @@ session_start();
             box-shadow: 0px 0px 11px 4px #FC4CFF;
         }
 
-        section li {
-            display: inline-block;
-            font-size: 20px;
-            padding: 20px;
-        }
+
 
         .meio {
             background-color: white;
@@ -42,6 +38,12 @@ session_start();
 
         .content {
             background-color: aqua;
+        }
+
+
+        :root {
+            --bs-primary: #9FA8DA !important;
+            --bs-primary-rgb: 159, 168, 218 !important;
         }
     </style>
     <link rel="stylesheet" href="../css/nav.css">
@@ -63,7 +65,138 @@ session_start();
 
         <div class="row">
             <section>
-                <div>
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a id="perfil1" class="nav-link active" onclick="liberar(this)" href="javascript:void(0)">Alterar nome de Úsuario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="perfil2" class="nav-link" onclick="liberar(this)" href="javascript:void(0)">Alterar Foto de perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="perfil3" class="nav-link" onclick="liberar(this)" href="javascript:void(0)">Alterar E-mail</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="perfil4" class="nav-link" onclick="liberar(this)" href="javascript:void(0)">Alterar Senha</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+                        <!-- O 1! -->
+                        <div id="perfil1_perfil1">
+                            <p>Nome</p>
+                            <form action="javascript:void(0)" id="formName">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" onkeyup="changeName(this.id)" onkeydown="changeName(this.id)" placeholder="Nome" value="<?php echo $_SESSION['nome']; ?>" id="novo_Nome" name="user" required>
+                                    <div id="errorSenha1" class="invalid-feedback">
+                                        Meu amigo, teu nome de usuário deve haver ao menos 5 caracteres!
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline"> Salvar Alterações </button>
+                            </form>
+                        </div>
+
+                        <!-- O 2! -->
+                        <div id="perfil2_perfil2" style="display: none;">
+                            <p>Alterar foto <br> (somente arquivos: .png, .jpg ou .jpeg)</p>
+                            <form action="javascript:void(0)" method="POST" id="f_alterarfoto" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Escolha o arquivo adequado, cavalheiro</label>
+                                    <input type="file" name="arquivo_alteracao" class="form-control-file" id="exampleFormControlFile1">
+
+                                    <div id="progresssbar" class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                                    </div>
+                                    <p id="feedback" style="display: none;"> Foto enviada com sucesso! </p>
+                                    <br> <br>
+                                    <button type="submit" class="btn btn-outline-primary"> Enviar </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- O 3! -->
+                        <div id="perfil3_perfil3" class="row" style="display: none;">
+                            <p>Email</p>
+
+                            <form action="javascript:void(0)" id="alterar_email">
+                                <div class="input-group my-3">
+                                    <input type="email" class="form-control" onkeyup="validadeEmail(this.id)" onkeydown="validadeEmail(this.id)" placeholder="Nome" value="<?php echo $_SESSION['email']; ?>" id="email_actual" name="email" required>
+                                    <div id="errorMail1" class="invalid-feedback">
+                                        .
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline"> Salvar Alterações </button>
+                            </form>
+                        </div>
+
+                        <!-- O 4! -->
+                        <div id="perfil4_perfil4" class="row" style="display: none;">
+                            <p>Senha</p>
+
+                            <form action="javascript:void(0)" id="btn-prosseguir">
+                                <p>Coloque a sua atual senha, primeiro: </p>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" placeholder="Coloque sua senha" id="senhaAtual">
+
+
+                                    <div id="errorSenha1" class="invalid-feedback">
+                                        Senha não autenticada!
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn-outline my-3"> Prosseguir </button> <br>
+                            </form>
+
+                            <form id="senha-correto" action="javascript:void(0)" style="display: none;">
+                                <p>Nova senha: </p>
+                                <p>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" onkeyup="senha1(this.id)" onkeydown="senha1(this.id)" placeholder="Senha" id="senha_nova_correto1" name="user" required>
+                                    <div id="errorSenhaNova" class="invalid-feedback">
+                                        .
+                                    </div>
+                                </div>
+                                </p>
+                                <p>Repita a senha: </p>
+                                <p>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" onkeyup="senha2(this.id)" onkeydown="senha2(this.id)" placeholder="Repita" id="senha_nova_correto2" name="user" required>
+                                    <div id="errorSenhaNova2" class="invalid-feedback">
+                                        As senhas não são consonântes!
+                                    </div>
+                                </div>
+                                </p>
+                                <div class="input-group">
+                                    <button class="btn btn-outline my-3" id="button-salvar"> Salvar Alterações </button> <br>
+                                    <div id="errorSenhaNova3" class="invalid-feedback">
+                                        Há erro no formulário!
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- <div>
                     <ul style="list-style: none; ">
                         <li id="perfil1" class="select" onclick="liberar(this)"> Alterar nome de Úsuario </li>
                         <li id="perfil2" onclick="liberar(this)"> Alterar Foto de perfil </li>
@@ -71,11 +204,11 @@ session_start();
                         <li id="perfil4" onclick="liberar(this)"> Alterar Senha </li>
 
                     </ul>
-                </div>
+                </div> -->
             </section>
         </div>
 
-        <div id="perfil1_perfil1" class="row content">
+        <!-- <div id="perfil1_perfil1" class="row content">
             <p>Nome</p>
             <form action="javascript:void(0)" id="formName">
                 <div class="input-group">
@@ -86,22 +219,24 @@ session_start();
                 </div>
                 <button class="btn btn-outline"> Salvar Alterações </button>
             </form>
-        </div>
+        </div> -->
 
-        <div id="perfil2_perfil2" class="row content" style="display: none;">
+        <!-- <div id="perfil2_perfil2" class="row content" style="display: none;">
             <p>Alterar foto <br> (somente arquivos: .png, .jpg ou .jpeg)</p>
             <form action="javascript:void(0)" method="POST" id="f_alterarfoto" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Escolha o arquivo adequado, cavalheiro</label>
                     <input type="file" name="arquivo_alteracao" class="form-control-file" id="exampleFormControlFile1">
-                    
-                    <div id="progresssbar" class="progress"> <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div> </div>
+
+                    <div id="progresssbar" class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    </div>
                     <p id="feedback" style="display: none;"> Foto enviada com sucesso! </p>
                     <br> <br>
                     <button type="submit"> Enviar </button>
                 </div>
             </form>
-        </div>
+        </div> -->
 
         <script>
             document.getElementById("f_alterarfoto").addEventListener('submit', alterar);
@@ -110,7 +245,7 @@ session_start();
             // URL TROCARURL
 
             function alterar(env) {
-                
+
                 var formData = new FormData(); //creating a form data object
                 var files = $('#exampleFormControlFile1')[0].files[0]; // appending the image file to the form data object
                 formData.append('file', files); //appending the file 
@@ -140,7 +275,7 @@ session_start();
                         xhr.addEventListener("progress", function(evt) {
                                 if (evt.lengthComputable) {
                                     var percentComplete = (evt.loaded / evt.total) * 100;
-                                   
+
                                     $("div.progress > div.progress-bar").css({
                                         "width": percentComplete + "%"
                                     });
@@ -154,8 +289,8 @@ session_start();
                     },
                     success: function() {
                         alert("pacata")
-                        $("#progresssbar").css('display','none');
-                        $("#feedback").css('display','block');
+                        $("#progresssbar").css('display', 'none');
+                        $("#feedback").css('display', 'block');
                     }
                     // success: function(data) { //handle response data
                     //     if (data !== 0) {
@@ -169,29 +304,30 @@ session_start();
 
                     // }
                 }).done(function(e) {
- 
-                        
-                    })
-                    function funfou() {
-                        
-                        $("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong>Feito!</strong> Foto de perfil do usuário alterado com sucesso! </div>")
-                        //$("#alertando").toggle("slow");
-                        var i = 0;
-                        var o = setInterval(() => {
-                            i++
-                            if (i == 3) {
-                                clearInterval(o)
-                                cancela()
-                            }
-                            console.log(i);
-                        }, 1000);
 
-                        function cancela() {
-                            console.log("OPa")
-                            $("#alertando").fadeOut()
-                            window.location.reload()
+
+                })
+
+                function funfou() {
+
+                    $("#alerte-o").prepend("<div class='alert alert-success text-center fixed fixed-top' id='alertando' role='alert'> <strong>Feito!</strong> Foto de perfil do usuário alterado com sucesso! </div>")
+                    //$("#alertando").toggle("slow");
+                    var i = 0;
+                    var o = setInterval(() => {
+                        i++
+                        if (i == 3) {
+                            clearInterval(o)
+                            cancela()
                         }
+                        console.log(i);
+                    }, 1000);
+
+                    function cancela() {
+                        console.log("OPa")
+                        $("#alertando").fadeOut()
+                        window.location.reload()
                     }
+                }
                 // var form, prct
                 // form = new FormData(env.target)
                 // var files = $('#exampleFormControlFile1')[0].files[0]; // appending the image file to the form data object
@@ -233,7 +369,7 @@ session_start();
 
 
 
-        <div id="perfil3_perfil3" class="row content" style="display: none;">
+        <!-- <div id="perfil3_perfil3" class="row content" style="display: none;">
             <p>Email</p>
 
             <form action="javascript:void(0)" id="alterar_email">
@@ -246,10 +382,10 @@ session_start();
 
                 <button class="btn btn-outline"> Salvar Alterações </button>
             </form>
-        </div>
+        </div> -->
 
 
-        <div id="perfil4_perfil4" class="row content" style="display: none;">
+        <!-- <div id="perfil4_perfil4" class="row content" style="display: none;">
             <p>Senha</p>
 
             <form action="javascript:void(0)" id="btn-prosseguir">
@@ -292,7 +428,7 @@ session_start();
                     </div>
                 </div>
             </form>
-        </div>
+        </div> -->
 
         <div id="alerte-o">
 
@@ -301,12 +437,12 @@ session_start();
         <script>
             function liberar(b) {
                 for (var i = 1; i < 5; i++) {
-                    $(`#perfil${i}`).removeClass('select');
+                    $(`#perfil${i}`).removeClass('active');
                 }
                 for (var i = 1; i < 5; i++) {
                     $(`#perfil${i}_perfil${i}`).css('display', 'none');
                 }
-                $(`#${b.id}`).addClass('select');
+                $(`#${b.id}`).addClass('active');
                 $(`#${b.id}_${b.id}`).css('display', 'block');
             }
 

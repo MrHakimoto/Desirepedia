@@ -123,7 +123,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     $value_c = $row['q_alt_c'];
                     $value_d = $row['q_alt_d'];
                     $value_e = $row['q_alt_e'];
-
+                    $materia = isset($row['q_materia']) ? $row['q_materia'] : null;
                     $correto = $row['q_correct'];
 
 
@@ -135,7 +135,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class='card-body'>
 
-            <h5 class='card-title'>Special title treatment</h5>
+            <h5 class='card-title'>$materia </h5>
             <p class='card-text'> $enunciado </p>
 
 
@@ -219,20 +219,44 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
 
         </div>
         <script>
+            document.addEventListener("mousedown", function(e) {
+    switch(e.buttons) {
+      case 1: 
+          console.log("Left button")
+        break
+      case 2:
+          console.log("Right button")
+        break
+      case 3:
+          console.log("Left and Right button")
+        break
+      case 4: 
+          console.log("Middle button")
+        break
+    }
+});
             const alternatives = ['A', 'B', 'C', 'D', 'E'];
 
-            function questionALT(x) {
+            function questionALT(x, y=null) {
                 let valore = x.id
                 var number = valore.slice(6, 11)
                 // console.log(valore)
                 // console.log(valore.length)
                 // console.log(valore.slice(6,11))
+                //console.log(y.buttons)
+                // if (y.buttons == 2) {
+                //           alert("DIREITO click not allowed");
+                // }
+
 
                 alternatives.forEach((v) => {
                     if ($(`#alt_${v}_${number}`).is(':checked')) {
                         console.log("deu bom", v)
                         $(`#bonitim_${v}_${number}`).css('background', '#5A2BB0');
                         $(`#bonitim_${v}_${number}`).css('color', 'white');
+
+
+
                     } else {
                         console.log("deu ruim", v)
                         $(`#bonitim_${v}_${number}`).css('background', 'none');
