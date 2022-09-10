@@ -31,7 +31,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
     <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/Desirepedia/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/Desirepedia/favicon/favicon-16x16.png">
     <link rel="manifest" href="http://localhost/Desirepedia/favicon/site.webmanifest">
-
+        <link rel="stylesheet" href="css/dash.css">
     <title> Dashboard </title>
 </head>
 
@@ -69,9 +69,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                         echo "<div class='col-12 col-md-6'>
                         <div class='card mb-3' style='max-width: 540px;'>
                             <div class='row g-0'>
-                                <div class='col-md-4'>
-                                    <img src='database/enem.png' class='img-fluid rounded-start' alt='...'>
-                                </div>
+                               
                                 <div class='col-md-8'>
                                     <div class='card-body'>
                                         <h5 class='card-title'>Prova</h5>
@@ -81,6 +79,10 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
                                         <p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
                                     </div>
+                                </div>
+                                <div class='col-md-4 p-1'>
+                                <div class='vertical-ll text-center' > <span class='enem-font'> <hspan style='color: #044c84; font-size: 60px;'>enem</span> </span> <br> <small> Exame Nacinonal do Ensino Médio <small> </div>
+                                <!-- <img src='database/enem.png' class='img-fluid rounded-start' alt='...' style='display: hidden;'> -->
                                 </div>
                             </div>
                         </div>

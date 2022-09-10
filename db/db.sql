@@ -29,3 +29,11 @@ ALTER TABLE `picture_db`
   ADD PRIMARY KEY AUTO_INCREMENT (`id`);
   
 ALTER TABLE `picture_db` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE IF NOT EXISTS `usuario_info` (`id` INT(11) NOT NULL, 
+`nome` TEXT, 
+`sobrenome` TEXT, `telefone` TEXT, 
+`cpf` TEXT,`cep` TEXT, `logradouro` TEXT, `bairro` TEXT,
+`complemento` TEXT,`cidade` TEXT,`estado` TEXT,  
+`ultima_alteracao` datetime DEFAULT CURRENT_TIMESTAMP) 
+ENGINE=InnoDB DEFAULT CHARSET=latin1;

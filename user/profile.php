@@ -45,6 +45,15 @@ session_start();
             --bs-primary: #9FA8DA !important;
             --bs-primary-rgb: 159, 168, 218 !important;
         }
+
+        .dauton {
+            border-color: purple; color: purple; 
+        }
+        .dauton:hover 
+        {
+            color:white;
+            background-color: purple;
+        }
     </style>
     <link rel="stylesheet" href="../css/nav.css">
 </head>
@@ -60,10 +69,10 @@ session_start();
     <b></b>
     </b>
     <div class="container mt-5 meio">
-        <?php echo $_SERVER['DOCUMENT_ROOT']; ?>
+        <?php // echo $_SERVER['DOCUMENT_ROOT']; ?>
 
 
-        <div class="row">
+        <div class="row py-5">
             <section>
                 <div class="card text-center">
                     <div class="card-header">
@@ -97,7 +106,7 @@ session_start();
                                         Meu amigo, teu nome de usuário deve haver ao menos 5 caracteres!
                                     </div>
                                 </div>
-                                <button class="btn btn-outline"> Salvar Alterações </button>
+                                <button class="btn btn-outline-primary dauton my-3" > Salvar Alterações </button>
                             </form>
                         </div>
 
@@ -107,14 +116,14 @@ session_start();
                             <form action="javascript:void(0)" method="POST" id="f_alterarfoto" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Escolha o arquivo adequado, cavalheiro</label>
-                                    <input type="file" name="arquivo_alteracao" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" name="arquivo_alteracao" class="form-control-file pb-2" id="exampleFormControlFile1">
 
                                     <div id="progresssbar" class="progress">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                     </div>
                                     <p id="feedback" style="display: none;"> Foto enviada com sucesso! </p>
                                     <br> <br>
-                                    <button type="submit" class="btn btn-outline-primary"> Enviar </button>
+                                    <button type="submit" class="btn btn-outline-primary dauton my-3"> Enviar </button>
                                 </div>
                             </form>
                         </div>
@@ -131,7 +140,7 @@ session_start();
                                     </div>
                                 </div>
 
-                                <button class="btn btn-outline"> Salvar Alterações </button>
+                                <button class="btn btn-outline dauton"> Salvar Alterações </button>
                             </form>
                         </div>
 
@@ -150,7 +159,7 @@ session_start();
                                     </div>
                                 </div>
                                 <br>
-                                <button class="btn btn-outline my-3"> Prosseguir </button> <br>
+                                <button class="btn btn-outline dauton my-3"> Prosseguir </button> <br>
                             </form>
 
                             <form id="senha-correto" action="javascript:void(0)" style="display: none;">
@@ -173,7 +182,7 @@ session_start();
                                 </div>
                                 </p>
                                 <div class="input-group">
-                                    <button class="btn btn-outline my-3" id="button-salvar"> Salvar Alterações </button> <br>
+                                    <button class="btn btn-outline dauton my-3" id="button-salvar"> Salvar Alterações </button> <br>
                                     <div id="errorSenhaNova3" class="invalid-feedback">
                                         Há erro no formulário!
                                     </div>
