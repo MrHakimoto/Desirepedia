@@ -81,10 +81,10 @@ include_once($path);
 ?>
 
 
-<header class="main-header d-none d-lg-block ">
+<header id="navbar-Grande" class="main-header d-none d-lg-block " style="background-color: #18191b; border-bottom: 2px solid #303133;">
   
   <div class="container navbar-Grande">
-    <nav id="navbar-Grande" style="transition: 0.5s;" class="navbar navbar-expand-lg main-nav px-0">
+    <nav  style="transition: 0.5s;" class="navbar navbar-expand-lg main-nav px-0">
       <?php $tuos = $_SERVER['REQUEST_URI']; ?>
       <a class="navbar-brand" href="<?php echo url() ?>/Desirepedia/">
         <?php  ?>

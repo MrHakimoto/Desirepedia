@@ -31,7 +31,7 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
     <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/Desirepedia/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/Desirepedia/favicon/favicon-16x16.png">
     <link rel="manifest" href="http://localhost/Desirepedia/favicon/site.webmanifest">
-        <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/dash.css">
     <title> Dashboard </title>
 </head>
 

@@ -62,7 +62,7 @@
             <span class="myText">a melhor plataforma para estudar para o enem 2022. Se inscreva e comece já!</span>
             <div>
                 <button class="myButton text-xl" style="margin-top: 25px;"><a href="auth">Logar</a></button>
-                <button class="myButton text-xl" style="margin-top: 25px; margin-left: 15px;"><a href="auth">Registrar</a></button>
+                <button class="myButton text-xl" style="margin-top: 25px; margin-left: 15px;"><a href="auth">Saiba Mais</a></button>
             </div>
         </div>
 
