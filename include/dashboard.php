@@ -25,13 +25,17 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="http://localhost/Desirepedia/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/Desirepedia/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/Desirepedia/favicon/favicon-16x16.png">
     <link rel="manifest" href="http://localhost/Desirepedia/favicon/site.webmanifest">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title> Dashboard </title>
 </head>
 
@@ -109,20 +113,20 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
             <div class='post-card'>
             </div>
         </div>
+    </div>
+    <?php
 
-        <?php
-
-        for ($i = 0; $i < 40; $i++) {
-            echo "<br>";
-        }
+    for ($i = 0; $i < 40; $i++) {
+        echo "<br>";
+    }
 
 
-        include_once('footer.php');
+    include_once('footer.php');
 
-        ?>
+    ?>
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script> -->
 </body>
 
 </html>

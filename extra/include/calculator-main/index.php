@@ -22,16 +22,16 @@ function get_client_ip() {
 
 function gravar($texto){
 	//Variável arquivo armazena o nome e extensão do arquivo.
-	$arquivo = "arquivinho.txt";
+	//$arquivo = "arquivinho.txt";
 	
 	//Variável $fp armazena a conexão com o arquivo e o tipo de ação.
-	$fp = fopen($arquivo, "a+");
+	//$fp = fopen($arquivo, "a+");
 
 	//Escreve no arquivo aberto.
-	fwrite($fp, $texto." \n  ");
+	//fwrite($fp, $texto." \n  ");
 	
 	//Fecha o arquivo.
-	fclose($fp);
+	//fclose($fp);
 }
 
 gravar(get_client_ip());
@@ -55,17 +55,23 @@ gravar(get_client_ip());
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title> Caucule </title>
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/dash.css">
+    
+        <title> Caulcule </title>
     <style>
         * {
             /*margin: 0;
         padding: 0;*/
         }
 
-        body {
+        /* body {
             background-color: black;
             color: aliceblue;
-        }
+        } */
 
         .calc {
             font-family: 'Geo', sans-serif;
@@ -85,9 +91,9 @@ gravar(get_client_ip());
             /*visibility: hidden;*/
         }
 
-        .container {
+        /* .container {
             background-color: rgb(32, 32, 32);
-        }
+        } */
 
         #insert {
             border-radius: 10px;
@@ -115,11 +121,11 @@ gravar(get_client_ip());
 
 <body>
 
-    <div class="text-center display-2 mb-2">Calcule de cabeça</div>
-    <div class="card">
-        <div class="card-body">
+    <div class="text-center display-2 mb-2 mt-5" style="color: lightgreen;">Calcule de cabeça</div>
+    <div class="card mb-5" style="background: rgb(6, 8, 39);">
+        <div class="card-body" style="background: rgb(6, 8, 39);">
 
-            <div class="container">
+            <div class="container text-white">
             <!--<div class="p-2">
                 <h3 style="font: 14px 'Nunito Sans', Montserrat, Helvetica;"><img src="image/image-comunidade.png" alt="" srcset="" width="32px"> <b> COMUNIDADE ASSAAD </b></h3>
             </div> -->
@@ -248,7 +254,9 @@ gravar(get_client_ip());
         
 
 
+        <?php include_once('../include/footer.php');
 
+?>
 
 </body>
 <script>

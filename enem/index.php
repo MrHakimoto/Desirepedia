@@ -17,15 +17,22 @@ echo "Enem";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/dash.css">
     <style>
-        p {
+        .principal p {
             text-indent: 32px;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
             font-size: 20px;
@@ -60,7 +67,7 @@ echo "Enem";
     <br><br><br><br>
 
 
-    <div class="container mt-5">
+    <div class="container principal mt-5">
 
         <div style="background-color: #6730ba;">
             <p style="color: white; font-size: 150px; background-color: #6730ba;" class='enem-font text-center'> enem </p>
@@ -148,7 +155,7 @@ echo "Enem";
                             <h3 class="p-4 sub-titles"> Biologia </h3>
                             <p>
                             <ul style="list-style: none;">
-                                <li> - <strong> Microbiologia e Genética  </strong> (55 questões – 19%);</li>
+                                <li> - <strong> Microbiologia e Genética </strong> (55 questões – 19%);</li>
                                 <li> - <strong> Ecologia </strong> (32 questões – 11,3%); </li>
                                 <li> - <strong> Citologia </strong> (32 questões – 11,3%); </li>
                                 <li> - <strong> Fisiologia </strong> (22 questões – 7,8%);. </li>
@@ -160,9 +167,9 @@ echo "Enem";
                             <p>
                             <ul style="list-style: none;">
                                 <li> - <strong> Equilíbrios Químicos </strong> (63 questões – 26,8%);</li>
-                                <li> - <strong> Química Orgânica e Eletroquímica  </strong> (48 questões – 18,1%); </li>
-                                <li> - <strong> Meio Ambiente  </strong> (32 questões – 12,1%); </li>
-                                <li> - <strong> Estequiometria  </strong> (30 questões – 11,3%).</li>
+                                <li> - <strong> Química Orgânica e Eletroquímica </strong> (48 questões – 18,1%); </li>
+                                <li> - <strong> Meio Ambiente </strong> (32 questões – 12,1%); </li>
+                                <li> - <strong> Estequiometria </strong> (30 questões – 11,3%).</li>
                             </ul>
                             </p>
                         </div>
@@ -173,7 +180,7 @@ echo "Enem";
                                 <ul style="list-style: none;">
                                     <li> - <strong> Mecânica </strong> (64 questões – 30,3%);</li>
                                     <li> - <strong> Eletricidade e Energia </strong> (52 questões – 24,6%); </li>
-                                    <li> - <strong> Ondulatória, Termodinâmica, Óptica  </strong> (40 questões – 19%).</li>
+                                    <li> - <strong> Ondulatória, Termodinâmica, Óptica </strong> (40 questões – 19%).</li>
                                 </ul>
                                 </p>
                             </div>
@@ -181,7 +188,7 @@ echo "Enem";
                                 <h3 class="p-4 sub-titles"> Matemática </h3>
                                 <p>
                                 <ul style="list-style: none;">
-                                    <li> - <strong> Geometria Espacial  </strong> (189 questões – 26,3%);</li>
+                                    <li> - <strong> Geometria Espacial </strong> (189 questões – 26,3%);</li>
                                     <li> - <strong> Aritmética </strong> (92 questões – 12,8%); </li>
                                     <li> - <strong> Razão e Propoção </strong> (87 questões – 12,1%); </li>
                                     <li> - <strong> Funções e Estatística </strong> (65 questões – 9%). </li>
@@ -189,9 +196,13 @@ echo "Enem";
                                 </p>
                             </div>
 
+                            <p class="my-5"> Disponível em: <a href="https://www.novaconcursos.com.br/portal/artigos/materias-que-mais-caem-no-enem/" target="_blank" rel="noopener noreferrer">https://www.novaconcursos.com.br/portal/artigos/materias-que-mais-caem-no-enem/</a></p>
+
         </section>
     </div>
+    <?php include_once('../include/footer.php');
 
+    ?>
 </body>
 
 </html>

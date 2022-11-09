@@ -1,0 +1,245 @@
+footer a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+.img,
+.blog-img,
+.user-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.ftco-footer-social li {
+    list-style: none;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.ftco-footer-social li a {
+    height: 40px;
+    width: 40px;
+    display: block;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    position: relative;
+}
+
+.ftco-footer-social li a span {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.ftco-footer-social li a:hover {
+    color: #fff;
+}
+
+footer form {
+    display: block;
+    margin-top: 0em;
+}
+
+footer .form-control {
+    height: 52px;
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+footer .form-control:focus,
+footer .form-control:active {
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+footer textarea.form-control {
+    height: inherit !important;
+}
+
+footer .aside-stretch-right {
+    background: #5A2BB0;
+}
+
+footer .aside-stretch-right:after {
+    position: relative;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    content: '';
+    width: 360%;
+    background: #5A2BB0;
+}
+
+@media (max-width: 767.98px) {
+    footer .aside-stretch-right {
+        background: transparent;
+    }
+
+    footer .aside-stretch-right:after {
+        background: transparent;
+        display: none;
+    }
+}
+
+footer .ftco-section {
+    padding: 12em 0;
+}
+
+footer .ftco-section h2 {
+    margin-bottom: 0;
+}
+
+
+footer {
+    padding: 7em 0;
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: normal;
+}
+
+.footer-08 {
+    padding: 0;
+    overflow: hidden;
+    background: #18191b;
+}
+
+.footer-08 a {
+    color: #5A2BB0;
+}
+
+.footer-08 p {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.footer-08 .footer-heading {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .footer-08 .footer-heading.footer-heading-white {
+        color: #fff;
+    }
+}
+
+.footer-08 ul.list-unstyled li a {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.footer-08 .contact-form {
+    width: 100%;
+}
+
+.footer-08 .contact-form .form-control {
+    height: 50px;
+    background: #fff;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+.footer-08 .contact-form .form-control::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.footer-08 .contact-form .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.footer-08 .contact-form .form-control:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.footer-08 .contact-form .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.footer-08 .contact-form .form-control:focus {
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.footer-08 .contact-form .form-control:focus,
+.footer-08 .contact-form .form-control:active {
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.footer-08 .contact-form .submit {
+    background: #5A2BB0 !important;
+    color: #fff;
+}
+
+.footer-08 .contact-form textarea.form-control {
+    height: inherit !important;
+}
+
+.footer-08 .aside-stretch-right {
+    background: #a24ddb;
+}
+
+.footer-08 .aside-stretch-right:after {
+    background: #5A2BB0;
+}
+
+@media (max-width: 767.98px) {
+    .footer-08 .aside-stretch-right {
+        background: transparent;
+    }
+
+    .footer-08 .aside-stretch-right:after {
+        background: transparent;
+        display: none;
+    }
+}
+
+.t1 {
+    color: #5A2BB0 !important;
+}
+
+.i1 {
+    color: #5A2BB0 !important;
+}
