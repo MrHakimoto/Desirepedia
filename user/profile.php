@@ -10,9 +10,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <title> Profile | Desirepedia </title>
     <style>
@@ -21,10 +23,10 @@ session_start();
             text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
         }
 
-        .row img {
+        /* .row img {
             box-shadow: inset 0px 0px 18px 1px #2E77FF;
             box-shadow: 0px 0px 11px 4px #FC4CFF;
-        }
+        } */
 
 
 
@@ -48,11 +50,25 @@ session_start();
 
         .dauton {
             border-color: purple; color: purple; 
+            margin-top: 20px;
         }
         .dauton:hover 
         {
             color:white;
             background-color: purple;
+        }
+
+        .card  p {
+            padding: 20px;
+            font-family: 'Lato', sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+
+        }
+
+
+        button {
+            margin-top: 20px;
         }
     </style>
     <link rel="stylesheet" href="../css/nav.css">
@@ -66,15 +82,16 @@ session_start();
 
     ?>
     <br><br><br><br>
-    <b></b>
-    </b>
-    <div class="container mt-5 meio">
+    <br></br>
+    </br><br><br><br><br>
+
+    <div class="container my-5 meio">
         <?php // echo $_SERVER['DOCUMENT_ROOT']; ?>
 
 
         <div class="row py-5">
             <section>
-                <div class="card text-center">
+                <div class="card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
@@ -112,7 +129,7 @@ session_start();
 
                         <!-- O 2! -->
                         <div id="perfil2_perfil2" style="display: none;">
-                            <p>Alterar foto <br> (somente arquivos: .png, .jpg ou .jpeg)</p>
+                            <p>Alterar foto <br> <small style="font-size: 20px;"> (somente arquivos: .png, .jpg ou .jpeg)</small> </p>
                             <form action="javascript:void(0)" method="POST" id="f_alterarfoto" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Escolha o arquivo adequado, cavalheiro</label>
@@ -146,10 +163,12 @@ session_start();
 
                         <!-- O 4! -->
                         <div id="perfil4_perfil4" class="row" style="display: none;">
-                            <p>Senha</p>
+                            
 
                             <form action="javascript:void(0)" id="btn-prosseguir">
-                                <p>Coloque a sua atual senha, primeiro: </p>
+                            <p>Senha    
+                            <br>
+                            <small style="font-size: 20px;"> Coloque a sua atual senha, primeiro: </small> </p>
                                 <div class="input-group">
                                     <input type="password" class="form-control" placeholder="Coloque sua senha" id="senhaAtual">
 
@@ -442,6 +461,22 @@ session_start();
         <div id="alerte-o">
 
         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+        <br><br><br><br>
+    <br></br>
+    </br><br><br><br><br>
+    <br></br>
+    </br>
+
+        <?php include_once('../include/footer.php');
+
+?>
 
         <script>
             function liberar(b) {
@@ -765,7 +800,8 @@ session_start();
 
 
             })
-        </script>
+       
+       </script>
 
 
 

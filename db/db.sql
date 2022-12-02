@@ -37,3 +37,11 @@ CREATE TABLE IF NOT EXISTS `usuario_info` (`id` INT(11) NOT NULL,
 `complemento` TEXT,`cidade` TEXT,`estado` TEXT,  
 `ultima_alteracao` datetime DEFAULT CURRENT_TIMESTAMP) 
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS `contabilizacao` (`id` INT(11) NOT NULL, 
+`questao` varchar(30), 
+`errou` int(13),
+`acertou` int(13),
+`data` datetime DEFAULT CURRENT_TIMESTAMP) 
+ENGINE=InnoDB DEFAULT CHARSET=latin1;

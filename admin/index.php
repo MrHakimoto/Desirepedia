@@ -100,7 +100,8 @@ try {
 $data_base = "CREATE TABLE IF NOT EXISTS id_tests (
     codigo INTEGER PRIMARY KEY AUTOINCREMENT,
     nome_bo_prova TEXT,
-    nome_bd_prova TEXT
+    nome_bd_prova TEXT,
+    dia_prova TEXT
     );";
 
 

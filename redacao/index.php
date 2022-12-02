@@ -51,6 +51,37 @@ echo "redação";
         .upper-title {
             color: #35bcf1;
         }
+
+        #scroll {
+            position: fixed;
+            left: 40px;
+            bottom: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background-color: purple;
+            text-indent: -9999px;
+            display: none;
+            border-radius: 60px;
+            box-shadow: -1px 3px 7px rgba(0, 0, 0, .9)
+        }
+
+        #scroll span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -17px;
+            height: 0;
+            width: 0;
+            border: 10px solid transparent;
+            border-bottom-color: #fff
+        }
+
+        #scroll:hover {
+            background-color: #A80000;
+            opacity: 1
+        }
     </style>
 </head>
 
@@ -67,7 +98,7 @@ echo "redação";
 
     <div class="container mt-5 redation">
 
-        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url(../database/LOGO-DESIREPEDIA.png);">
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url(../database/BACKGROUND-REDACION.png);">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 font-italic"> Redação do Enem </h1>
                 <p class="lead my-3"> 30 linhas e nada mais, saiba como é avaliada a mais problemática fase do grande vestibular brasileiro que trás inúmeras dores de cabeça aos estudantes. Aqui verá o que de fato é cobrado!</p>
@@ -384,8 +415,8 @@ echo "redação";
                             </tr>
                         </table>
                     </article>
-                    
-                <span class="my-5 underline" style="color:#a24ddb">Disponível em: <a href="http://portal.mec.gov.br/ultimas-noticias/418-enem-946573306/81381-conheca-as-cinco-competencias-cobradas-na-redacao-do-enem" target="_blank"> http://portal.mec.gov.br/ultimas-noticias/418-enem-946573306/81381-conheca-as-cinco-competencias-cobradas-na-redacao-do-enem</a></span>
+
+                    <span class="my-5 underline" style="color:#a24ddb">Disponível em: <a href="http://portal.mec.gov.br/ultimas-noticias/418-enem-946573306/81381-conheca-as-cinco-competencias-cobradas-na-redacao-do-enem" target="_blank"> http://portal.mec.gov.br/ultimas-noticias/418-enem-946573306/81381-conheca-as-cinco-competencias-cobradas-na-redacao-do-enem</a></span>
                 </div>
 
 
@@ -394,7 +425,29 @@ echo "redação";
     </div>
 
 
+
     </div>
+
+    <a href='#' id='scroll' title='Voltar ao Topo'>Topo<span /></a>
+
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 10) {
+                    $('#scroll').fadeIn();
+                } else {
+                    $('#scroll').fadeOut();
+                }
+            });
+
+            $('#scroll').click(function() {
+                $('html, body').animate({
+                    scrollTop: 50
+                }, 600);
+                return false;
+            });
+        });
+    </script>
     <?php include_once('../include/footer.php');
 
     ?>

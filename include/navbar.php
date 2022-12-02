@@ -29,7 +29,7 @@ function conter($palavra)
   }
 }
 
-$lista = array("extra", "time", "enem", "redacao", "services");
+$lista = array("extra", "time", "enem", "redacao", "media");
 
 
 $opcao = "home";
@@ -54,7 +54,7 @@ switch ($opcao) {
     $adicionar_class = "2";
     // echo "<script> alert('redacao') </script>";
     break;
-  case "services":
+  case "media":
     $adicionar_class = "3";
     //echo "<script> alert('services') </script>";
     break;
@@ -105,16 +105,16 @@ include_once($path);
             <a id="NLink2" href="<?php echo url() ?>/Desirepedia/redacao">Redação</a>
           </li>
           <li>
-            <a id="NLink3" href="<?php echo url() ?>/Desirepedia/services">Serviços</a>
+            <a id="NLink3" href="<?php echo url() ?>/Desirepedia/media">Média</a>
           </li>
           <li>
             <a id="NLink4" href="<?php echo url() ?>/Desirepedia/extra">EXTRA </a>
           </li>
           <li>
-            <a id="NLink5" href="<?php echo $_SESSION['pathMain']; ?>/time"> Time </a>
+            <a id="NLink6" href="<?php echo url() ?>/Desirepedia/enem">ENEM </a>
           </li>
           <li>
-            <a id="NLink6" href="<?php echo url() ?>/Desirepedia/enem">ENEM </a>
+            <a id="NLink5" href="<?php echo $_SESSION['pathMain']; ?>/time"> Time </a>
           </li>
           <li>
             <a href="#contact">
@@ -123,7 +123,6 @@ include_once($path);
                   <img src="<?php echo $pathh; ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small shadow userDown" aria-labelledby="dropdownUser2">
-                  <li><a class="dropdown-item" href="#">New project...</a></li>
                   <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/config.php">Configurações</a></li>
                   <li><a class="dropdown-item" href="<?php echo url() ?>/Desirepedia/user/profile.php">Perfil</a></li>
                   <li>

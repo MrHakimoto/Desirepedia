@@ -6,6 +6,9 @@
 <br>
 <input class="m-5" type="text" name="table_name">
 <br>
+<input type="radio" name="dia" id="primeiro" value="1 Dia"> 1 Dia <br>
+
+<input type="radio" name="dia" id="segundo" value="2 Dia"> 2 dia
 <input class="btn btn-primary" type="submit" value="Criar">
 </div>
 
@@ -23,6 +26,7 @@ try {
 
 if(isset($_POST['table_name'])){
 $tabela = $_POST['table_name'];
+$diaprova = $_POST['dia'];
 $nome_table = strtolower(str_replace(' ', '_', $tabela));
 
 $SQLcreateDB = "CREATE TABLE IF NOT EXISTS $nome_table (
@@ -47,7 +51,7 @@ if ($criar->execute()) {
 }
 
 
-$sqlInsertintotable = "INSERT INTO id_tests (nome_bo_prova, nome_bd_prova) VALUES ('$tabela','$nome_table')";
+$sqlInsertintotable = "INSERT INTO id_tests (nome_bo_prova, nome_bd_prova, dia_prova) VALUES ('$tabela','$nome_table', '$diaprova')";
 $criar2 = $con->prepare($sqlInsertintotable);
 $criar2->execute();
 

@@ -85,6 +85,19 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
             background-color: #5A2BB0;
             color: white;
         }
+
+
+        .filtragem {
+            background-color: #8e5ee6;
+            border-bottom: 4px solid purple;
+            border-right: 2px solid #8e5ee6;
+            border-left: 2px solid #8e5ee6;
+        }
+
+        .filtragem p {
+            font-size: 20px;
+            color: #f28e29;
+        }
     </style>
 </head>
 
@@ -101,7 +114,17 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container">
 
-        <h1 class="display-1">Prova</h1>
+        <h1 class="display-1 text-primary">Realizando prova!</h1>
+
+
+        <div class="filtragem my-5 p-5 rounded">
+            <p>Opção de filtragem: </p>
+            <select name="" id="" class="form-select form-select-sm">
+                <option value="">Selecione a matéria</option>
+                <option value="">Matemática</option>
+                <option value="">Português</option>
+            </select>
+        </div>
 
 
 
@@ -335,6 +358,8 @@ $iremos = $ir->fetchAll(PDO::FETCH_ASSOC);
                     $(`#alt_${v}_${f}`).attr('disabled', 'disabled');
                 })
             }
+        
+        
         </script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

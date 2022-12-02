@@ -34,11 +34,15 @@ session_start();
         }
 
         .select {
-            background-color: aqua;
+            background-color: #0e0f12;
+           
         }
 
         .content {
-            background-color: aqua;
+            background-color: #0e0f12;
+            border-top: 4px solid purple;
+            border-left: 2px solid #0e0f12;
+            border-right: 2px solid #0e0f12;
         }
 
         .dauton {
@@ -49,6 +53,20 @@ session_start();
         .dauton:hover {
             color: white;
             background-color: purple;
+        }
+
+        label {
+            color: purple;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        input, .form-control  {
+            background: none!important;
+            color: white!important;
+            margin-bottom: 10px;
+        }
+        option {
+            color: purple;
         }
     </style>
     <link rel="stylesheet" href="../css/nav.css">
@@ -61,26 +79,26 @@ session_start();
 
     $query = "SELECT * FROM usuario_info WHERE id=" . $_SESSION['id'];
 
-    if ($result = $pdo->query($query)) {
+    // if ($result = $pdo->query($query)) {
 
         /* fetch associative array */
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
+        // while ($row = $result->fetch_assoc()) {
+        //     $data[] = $row;
+        // }
 
-        foreach ($data as $dados) {
-            $nome = isset($dados['nome']) ? $dados['nome'] : "";
-            $sobrenome = isset($dados['sobrenome']) ? $dados['sobrenome'] : "";
-            $telefone = isset($dados['telefone']) ? $dados['telefone'] : "";
-            $cpf = isset($dados['cpf']) ? $dados['cpf'] : "";
-            $cep = isset($dados['cep']) ? $dados['cep'] : "";
-            $logradouro = isset($dados['logradouro']) ? $dados['logradouro'] : "";
-            $bairro = isset($dados['bairro']) ? $dados['bairro'] : "";
-            $complemento = isset($dados['complemento']) ? $dados['complemento'] : "";
-            $cidade = isset($dados['cidade']) ? $dados['cidade'] : "";
-            $estado = isset($dados['estado']) ? $dados['estado'] : "";
-        }
-    }
+    //     foreach ($data as $dados) {
+    //         $nome = isset($dados['nome']) ? $dados['nome'] : "";
+    //         $sobrenome = isset($dados['sobrenome']) ? $dados['sobrenome'] : "";
+    //         $telefone = isset($dados['telefone']) ? $dados['telefone'] : "";
+    //         $cpf = isset($dados['cpf']) ? $dados['cpf'] : "";
+    //         $cep = isset($dados['cep']) ? $dados['cep'] : "";
+    //         $logradouro = isset($dados['logradouro']) ? $dados['logradouro'] : "";
+    //         $bairro = isset($dados['bairro']) ? $dados['bairro'] : "";
+    //         $complemento = isset($dados['complemento']) ? $dados['complemento'] : "";
+    //         $cidade = isset($dados['cidade']) ? $dados['cidade'] : "";
+    //         $estado = isset($dados['estado']) ? $dados['estado'] : "";
+    //     }
+    // }
 
 
 
@@ -93,7 +111,7 @@ session_start();
     <br><br><br><br>
     <b></b>
     </b>
-    <div class="container my-5 meio border border-rounded">
+    <div class="container my-5 meio border-rounded">
         <?php
         $path = $_SERVER['DOCUMENT_ROOT'];
         $path .= "/Desirepedia/functions/imguser.php";
@@ -188,7 +206,7 @@ session_start();
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="my-4 btn btn-lg text-center btn-outline-primary dauton">Enviar</button>
+                            <button type="submit" class="my-4 btn btn-lg text-center btn-outline-primary dauton">Salvar</button>
             </form>
 
 

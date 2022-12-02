@@ -30,7 +30,7 @@
             /* -webkit-transition-delay: 1s;
             transition: linear all 1s;
   transition-delay: 1s; */
-  cursor: help;
+            cursor: help;
         }
 
         /* .tolfix {
@@ -75,7 +75,7 @@
         <div class="card m-5 p-3">
             <div class="row card m-5 p-5 tolfix" id="arthur">
 
-                <p class="text-white transicao" id="arthur-descricao" style="z-index: -1; position: absolute;">Olá, galera <br> Meu nome é Arthur, tenho, atualmente 17 anos e estou no 3 ano do ensino médio... e, uma bosta, rs rs rs. <br> <br> oasjfoiadj <span> 
+                <p class="text-white transicao" id="arthur-descricao" style="z-index: -1; position: absolute;">Olá, galera <br> Meu nome é Arthur, tenho, atualmente 17 anos e estou no 3 ano do ensino médio... e, uma bosta, rs rs rs. <br> <br> oasjfoiadj <span>
                 </p>
 
 
@@ -93,7 +93,8 @@
         <div class="card m-5 p-3">
             <div class="row card m-5 p-5 tolfix" id="natali">
 
-                <p class="text-white transicao" id="natali-descricao" style="z-index: -1; position: absolute;">Olá, galera <br> Meu nome é Natali, tenho, atualmente 17 anos e estou no 3 ano do ensino médio... e, uma bosta, rs rs rs. <br> <br> oasjfoiadj
+                <p class="text-white transicao" id="natali-descricao" style="z-index: -1; position: absolute;">Olá, meu nome é Nátali. <br>
+                 atualmente tenho 17 anos e estou no 3° ano do ensino médio. Entrei no IFNMG em 2020, justamente pelo interesse em aprofundar <br> um pouco mais meu conhecimento na área da informática. As minhas experiências na instituição foram grandiosas para minha formação, <br> assim como realizar esse projeto ao lado dos meus colegas, pois agregou no meu ensino e já começou a me preparar para propostas futuras,<br> eu adorei fazer parte desse trabalho e certamente vou levar essa experiência para vida. Espero que gostem, realizamos com muito esforço.
                 </p>
 
 
@@ -148,16 +149,16 @@
             <div class="row card m-5 p-5 tolfix" id="filipe">
 
                 <p class="text-white transicao" id="filipe-descricao" style="z-index: -1; position: absolute;">
-                Fala pessoal, beleza?! <br>
-                Bem, sou o Filipe um dos desenvolvedores desse site, e foi muito gratificante participar da criação dele
-                além de ter a companhia desse time fenomenal foi serventia de muito aprendizado. <br>
-                Nasci e moro atualmente em Janaúba, cidade perdida da velha Minas Gerais e, infelizmente, mesmo com todos
-                os conhecimentos adquiridos na área da Informática não pretendo seguir nela, mesmo assim tudo que foi aprendizado durante o curso que fiz no IFNMG da minha cidade vai ser utilizado, sem dúvida!
+                    Fala pessoal, beleza?! <br>
+                    Bem, sou o Filipe um dos desenvolvedores desse site, e foi muito gratificante participar da criação dele
+                    além de ter a companhia desse time fenomenal foi serventia de muito aprendizado. <br>
+                    Nasci e moro atualmente em Janaúba, cidade perdida da velha Minas Gerais e, infelizmente, mesmo com todos
+                    os conhecimentos adquiridos na área da Informática não pretendo seguir nela, mesmo assim tudo que foi aprendizado durante o curso que fiz no IFNMG da minha cidade vai ser utilizado, sem dúvida!
 
-                <br> <br>
+                    <br> <br>
 
-                Obrigado por acessaram, espero que gostem, imensamente!
-                rs
+                    Obrigado por acessaram, espero que gostem, imensamente!
+                    rs
                 </p>
 
 
@@ -166,7 +167,7 @@
                         <img src="../database/filipe-image.jpg" width="200px" alt="Filipe" class="rounded-circle">
                     </div>
                     <div class="d-flex justify-content-center text-center p-1">
-                        <h3> Filipe Ozanam Dias Pereira <br>  </h3>
+                        <h3> Filipe Ozanam Dias Pereira <br> </h3>
                     </div>
                 </div>
             </div>
